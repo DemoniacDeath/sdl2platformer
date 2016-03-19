@@ -19,6 +19,7 @@ public:
 	virtual void detectCollisions();
 	virtual void detectCollisions(std::vector<GameObject *> *);
 	virtual void handleCollision(GameObject *, Vector2D);
+	virtual void handleExitCollision(GameObject *);
 	virtual void render(Vector2D, Vector2D, Size);
 	virtual void addChild(GameObject *);
 	virtual void free();

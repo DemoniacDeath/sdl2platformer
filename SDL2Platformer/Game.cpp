@@ -29,7 +29,7 @@ void Game::run()
 	{
 		SDL_Event e;
 
-		context->world = new GOWorld(context, Rect(0, 0, context->settings->windowWidth/2, context->settings->windowHeight/2));
+		context->world = new GOWorld(context, Rect(0, 0, float(context->settings->windowWidth/2.), float(context->settings->windowHeight/2.)));
 		context->world->camera->originalSize.width /= 2;
 		context->world->camera->originalSize.height /= 2;
 
@@ -46,12 +46,12 @@ void Game::run()
 		GOSolid * brick;
 		for (int i = 0; i < 3; i++)
 		{
-			brick = new GOSolid(context, Rect( -context->world->frame.size.width/2 + 15 + i * 10, context->world->frame.size.height/2 - 15, 10, 10 ));
+			brick = new GOSolid(context, Rect(float(-context->world->frame.size.width/2) + 15 + i * 10, float(context->world->frame.size.height/2) - 15, 10, 10 ));
 			brick->renderObject = new RenderObject(context, brick, Color(0x00, 0x00, 0x00, 0xFF));
 			context->world->addChild(brick);
 		}
 
-		//brick = NULL;
+		brick = NULL;
 		player = NULL;
 
 		while (!context->quit)
@@ -65,7 +65,6 @@ void Game::run()
 					context->quit = true;
 					break;
 				}
-				//player->handleEvent(&e);
 				context->world->handleEvent(&e);
 			}
 

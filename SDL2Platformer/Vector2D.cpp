@@ -13,7 +13,7 @@ Vector2D::Vector2D(float x, float y)
 
 float Vector2D::length()
 {
-	return sqrt(x*x + y*y);
+	return sqrtf(x*x + y*y);
 }
 
 Vector2D Vector2D::operator*(float s)

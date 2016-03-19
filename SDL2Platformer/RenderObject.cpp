@@ -10,7 +10,7 @@ RenderObject::RenderObject(GameContext * context, SDL_Texture * texture)
 
 RenderObject::RenderObject(GameContext * context, GameObject * gameObject, Color color)
 {
-	texture = SDL_CreateTexture(context->renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, gameObject->frame.size.width, gameObject->frame.size.height);
+	texture = SDL_CreateTexture(context->renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, (int)gameObject->frame.size.width, (int)gameObject->frame.size.height);
 	SDL_SetRenderTarget(context->renderer, texture);
 	SDL_SetRenderDrawColor(context->renderer, color.r, color.g, color.b, color.a);
 	SDL_RenderClear(context->renderer);
