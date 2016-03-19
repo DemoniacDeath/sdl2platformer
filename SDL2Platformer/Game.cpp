@@ -29,26 +29,29 @@ void Game::run()
 	{
 		SDL_Event e;
 
-		GOPlayer * player = new GOPlayer(context, { context->world->rect.w/2-30,0,60,120 });
-		player->renderObject = new RenderObject(context, player->rect, Color(0x00, 0xFF, 0x00, 0xFF));
+		context->world = new GOWorld(context, Rect(0, 0, context->settings->windowWidth/2, context->settings->windowHeight/2));
+		context->world->camera->originalSize.width /= 2;
+		context->world->camera->originalSize.height /= 2;
+
+		GOPlayer * player = new GOPlayer(context, Rect( 0,20,10,20 ));
+		player->renderObject = new RenderObject(context, player, Color(0x00, 0xFF, 0x00, 0xFF));
 		player->speed = 4;
 		player->jumpSpeed = 10;
+		player->addChild(context->world->camera);
 
-		context->world->children.push_back(player);
+		context->world->addChild(player);
 
-		context->world->children.push_back(new GOFrame(context, { 0,0,context->world->rect.w,context->world->rect.h }, 60));
-
-		//context->world->children.push_back(new GOFrame(context, { context->world->rect.w/2, context->world->rect.h-120, 60, 60}, 20));
+		context->world->addChild(new GOFrame(context, Rect( 0,0,context->world->frame.size.width,context->world->frame.size.height ), 10));
 
 		GOSolid * brick;
 		for (int i = 0; i < 3; i++)
 		{
-			brick = new GOSolid(context, { 60+i*60, context->world->rect.h - 120, 60, 60 });
-			brick->renderObject = new RenderObject(context, brick->rect, Color(0x00, 0x00, 0x00, 0xFF));
-			context->world->children.push_back(brick);
+			brick = new GOSolid(context, Rect( -context->world->frame.size.width/2 + 15 + i * 10, context->world->frame.size.height/2 - 15, 10, 10 ));
+			brick->renderObject = new RenderObject(context, brick, Color(0x00, 0x00, 0x00, 0xFF));
+			context->world->addChild(brick);
 		}
 
-		brick = NULL;
+		//brick = NULL;
 		player = NULL;
 
 		while (!context->quit)

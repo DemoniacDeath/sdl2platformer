@@ -24,8 +24,6 @@ GameContext::GameContext(GameSettings * settings)
 	}
 	//Initialize renderer color
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-
-	world = new GOWorld(this, {0, 0, settings->windowWidth, settings->windowHeight});
 }
 
 void GameContext::free()

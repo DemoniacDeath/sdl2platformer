@@ -13,20 +13,20 @@ void PhysicsState::change()
 	{
 		velocity.y += gravityForce;
 	}
-	gameObject->rect.x += velocity.x;
-	gameObject->rect.y += velocity.y;
+	gameObject->frame.center.x += velocity.x;
+	gameObject->frame.center.y += velocity.y;
 }
 
 void PhysicsState::detectCollision(PhysicsState * c)
 {
-	int x1 = gameObject->rect.x;
-	int x2 = c->gameObject->rect.x;
-	int X1 = x1 + gameObject->rect.w;
-	int X2 = x2 + c->gameObject->rect.w;
-	int y1 = gameObject->rect.y;
-	int y2 = c->gameObject->rect.y;
-	int Y1 = y1 + gameObject->rect.h;
-	int Y2 = y2 + c->gameObject->rect.h;
+	int x1 = gameObject->globalPosition().x - gameObject->frame.size.width / 2;
+	int x2 = c->gameObject->globalPosition().x - c->gameObject->frame.size.width / 2;
+	int X1 = x1 + gameObject->frame.size.width;
+	int X2 = x2 + c->gameObject->frame.size.width;
+	int y1 = gameObject->globalPosition().y - gameObject->frame.size.height / 2;
+	int y2 = c->gameObject->globalPosition().y - c->gameObject->frame.size.height / 2;
+	int Y1 = y1 + gameObject->frame.size.height;
+	int Y2 = y2 + c->gameObject->frame.size.height;
 
 	int diffX1 = X1 - x2;
 	int diffX2 = x1 - X2;

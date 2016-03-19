@@ -134,6 +134,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="GameContext.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GOCamera.cpp" />
     <ClCompile Include="GOFrame.cpp" />
     <ClCompile Include="GOPlayer.cpp" />
     <ClCompile Include="GOSolid.cpp" />
@@ -141,8 +142,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="PhysicsState.cpp" />
+    <ClCompile Include="Rect.cpp" />
     <ClCompile Include="RenderObject.cpp" />
     <ClCompile Include="GameSettings.cpp" />
+    <ClCompile Include="Size.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,13 +153,16 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameContext.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GOCamera.h" />
     <ClInclude Include="GOFrame.h" />
     <ClInclude Include="GOPlayer.h" />
     <ClInclude Include="GOSolid.h" />
     <ClInclude Include="GOWorld.h" />
     <ClInclude Include="PhysicsState.h" />
+    <ClInclude Include="Rect.h" />
     <ClInclude Include="RenderObject.h" />
     <ClInclude Include="GameSettings.h" />
+    <ClInclude Include="Size.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

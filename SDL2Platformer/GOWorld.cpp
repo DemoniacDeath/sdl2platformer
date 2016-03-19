@@ -2,7 +2,10 @@
 #include "GameContext.h"
 
 
-GOWorld::GOWorld(GameContext * context, SDL_Rect rect) : GameObject(context, rect) {};
+GOWorld::GOWorld(GameContext * context, Rect frame) : GameObject(context, frame)
+{
+	camera = new GOCamera(context, frame);
+}
 
 void GOWorld::handleEvent(SDL_Event * e)
 {
@@ -17,3 +20,9 @@ void GOWorld::handleEvent(SDL_Event * e)
 		}
 	}
 }
+
+void GOWorld::render()
+{
+	GameObject::render(frame.center, camera->globalPosition(), camera->frame.size);
+}
+

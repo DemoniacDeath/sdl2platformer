@@ -1,6 +1,6 @@
 #include "GOPlayer.h"
 
-GOPlayer::GOPlayer(GameContext * context, SDL_Rect rect) : GameObject(context, rect)
+GOPlayer::GOPlayer(GameContext * context, Rect frame) : GameObject(context, frame)
 {
 	physics = new PhysicsState(this);
 	physics->gravity = true;
@@ -38,8 +38,8 @@ void GOPlayer::handleKeyboard(const Uint8 * state)
 	{
 		moveVector += Vector2D(speed, 0);
 	}
-	rect.x += moveVector.x;
-	rect.y += moveVector.y;
+	frame.center.x += moveVector.x;
+	frame.center.y += moveVector.y;
 	GameObject::handleKeyboard(state);
 }
 
@@ -47,7 +47,7 @@ void GOPlayer::handleCollision(GameObject * collider, Vector2D collisionArea)
 {
 	if (SDL_abs(collisionArea.x) < SDL_abs(collisionArea.y))
 	{
-		rect.x -= collisionArea.x;
+		frame.center.x -= collisionArea.x;
 		physics->velocity.x = 0;
 	}
 	else
@@ -56,7 +56,7 @@ void GOPlayer::handleCollision(GameObject * collider, Vector2D collisionArea)
 		{
 			jumped = false;
 		}
-		rect.y -= collisionArea.y;
+		frame.center.y -= collisionArea.y;
 		physics->velocity.y = 0;
 	}
 }
