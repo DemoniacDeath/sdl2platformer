@@ -2,7 +2,7 @@
 and may not be redistributed without written permission.*/
 
 //Using SDL, SDL_image, standard IO, and strings
-#include "game.h"
+#include "Game.h"
 
 int main(int argc, char* args[])
 {
