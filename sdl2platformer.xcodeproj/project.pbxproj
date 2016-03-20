@@ -1,0 +1,353 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15400D131C9F107400000135 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400CF31C9F107400000135 /* Animation.cpp */; };
+		15400D141C9F107400000135 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400CF51C9F107400000135 /* Color.cpp */; };
+		15400D151C9F107400000135 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400CF71C9F107400000135 /* Game.cpp */; };
+		15400D161C9F107400000135 /* GameContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400CF91C9F107400000135 /* GameContext.cpp */; };
+		15400D171C9F107400000135 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400CFB1C9F107400000135 /* GameObject.cpp */; };
+		15400D181C9F107400000135 /* GameSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400CFD1C9F107400000135 /* GameSettings.cpp */; };
+		15400D191C9F107400000135 /* GOCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400CFF1C9F107400000135 /* GOCamera.cpp */; };
+		15400D1A1C9F107400000135 /* GOFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400D011C9F107400000135 /* GOFrame.cpp */; };
+		15400D1B1C9F107400000135 /* GOPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400D031C9F107400000135 /* GOPlayer.cpp */; };
+		15400D1C1C9F107400000135 /* GOSolid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400D051C9F107400000135 /* GOSolid.cpp */; };
+		15400D1D1C9F107400000135 /* GOWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400D071C9F107400000135 /* GOWorld.cpp */; };
+		15400D1E1C9F107400000135 /* PhysicsState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400D091C9F107400000135 /* PhysicsState.cpp */; };
+		15400D1F1C9F107400000135 /* Rect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400D0B1C9F107400000135 /* Rect.cpp */; };
+		15400D201C9F107400000135 /* RenderObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400D0D1C9F107400000135 /* RenderObject.cpp */; };
+		15400D211C9F107400000135 /* Size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400D0F1C9F107400000135 /* Size.cpp */; };
+		15400D221C9F107400000135 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400D111C9F107400000135 /* Vector2D.cpp */; };
+		15400D241C9F10A500000135 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15400D231C9F10A500000135 /* SDL2.framework */; };
+		15400D261C9F124B00000135 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15400D251C9F124B00000135 /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		15400CE71C9F100700000135 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		15400CE91C9F100700000135 /* sdl2platformer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sdl2platformer; sourceTree = BUILT_PRODUCTS_DIR; };
+		15400CF31C9F107400000135 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Animation.cpp; path = SDL2Platformer/Animation.cpp; sourceTree = SOURCE_ROOT; };
+		15400CF41C9F107400000135 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Animation.h; path = SDL2Platformer/Animation.h; sourceTree = SOURCE_ROOT; };
+		15400CF51C9F107400000135 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Color.cpp; path = SDL2Platformer/Color.cpp; sourceTree = SOURCE_ROOT; };
+		15400CF61C9F107400000135 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = SDL2Platformer/Color.h; sourceTree = SOURCE_ROOT; };
+		15400CF71C9F107400000135 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = SDL2Platformer/Game.cpp; sourceTree = SOURCE_ROOT; };
+		15400CF81C9F107400000135 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = SDL2Platformer/Game.h; sourceTree = SOURCE_ROOT; };
+		15400CF91C9F107400000135 /* GameContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameContext.cpp; path = SDL2Platformer/GameContext.cpp; sourceTree = SOURCE_ROOT; };
+		15400CFA1C9F107400000135 /* GameContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameContext.h; path = SDL2Platformer/GameContext.h; sourceTree = SOURCE_ROOT; };
+		15400CFB1C9F107400000135 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameObject.cpp; path = SDL2Platformer/GameObject.cpp; sourceTree = SOURCE_ROOT; };
+		15400CFC1C9F107400000135 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameObject.h; path = SDL2Platformer/GameObject.h; sourceTree = SOURCE_ROOT; };
+		15400CFD1C9F107400000135 /* GameSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameSettings.cpp; path = SDL2Platformer/GameSettings.cpp; sourceTree = SOURCE_ROOT; };
+		15400CFE1C9F107400000135 /* GameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameSettings.h; path = SDL2Platformer/GameSettings.h; sourceTree = SOURCE_ROOT; };
+		15400CFF1C9F107400000135 /* GOCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GOCamera.cpp; path = SDL2Platformer/GOCamera.cpp; sourceTree = SOURCE_ROOT; };
+		15400D001C9F107400000135 /* GOCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GOCamera.h; path = SDL2Platformer/GOCamera.h; sourceTree = SOURCE_ROOT; };
+		15400D011C9F107400000135 /* GOFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GOFrame.cpp; path = SDL2Platformer/GOFrame.cpp; sourceTree = SOURCE_ROOT; };
+		15400D021C9F107400000135 /* GOFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GOFrame.h; path = SDL2Platformer/GOFrame.h; sourceTree = SOURCE_ROOT; };
+		15400D031C9F107400000135 /* GOPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GOPlayer.cpp; path = SDL2Platformer/GOPlayer.cpp; sourceTree = SOURCE_ROOT; };
+		15400D041C9F107400000135 /* GOPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GOPlayer.h; path = SDL2Platformer/GOPlayer.h; sourceTree = SOURCE_ROOT; };
+		15400D051C9F107400000135 /* GOSolid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GOSolid.cpp; path = SDL2Platformer/GOSolid.cpp; sourceTree = SOURCE_ROOT; };
+		15400D061C9F107400000135 /* GOSolid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GOSolid.h; path = SDL2Platformer/GOSolid.h; sourceTree = SOURCE_ROOT; };
+		15400D071C9F107400000135 /* GOWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GOWorld.cpp; path = SDL2Platformer/GOWorld.cpp; sourceTree = SOURCE_ROOT; };
+		15400D081C9F107400000135 /* GOWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GOWorld.h; path = SDL2Platformer/GOWorld.h; sourceTree = SOURCE_ROOT; };
+		15400D091C9F107400000135 /* PhysicsState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PhysicsState.cpp; path = SDL2Platformer/PhysicsState.cpp; sourceTree = SOURCE_ROOT; };
+		15400D0A1C9F107400000135 /* PhysicsState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhysicsState.h; path = SDL2Platformer/PhysicsState.h; sourceTree = SOURCE_ROOT; };
+		15400D0B1C9F107400000135 /* Rect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Rect.cpp; path = SDL2Platformer/Rect.cpp; sourceTree = SOURCE_ROOT; };
+		15400D0C1C9F107400000135 /* Rect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rect.h; path = SDL2Platformer/Rect.h; sourceTree = SOURCE_ROOT; };
+		15400D0D1C9F107400000135 /* RenderObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderObject.cpp; path = SDL2Platformer/RenderObject.cpp; sourceTree = SOURCE_ROOT; };
+		15400D0E1C9F107400000135 /* RenderObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderObject.h; path = SDL2Platformer/RenderObject.h; sourceTree = SOURCE_ROOT; };
+		15400D0F1C9F107400000135 /* Size.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Size.cpp; path = SDL2Platformer/Size.cpp; sourceTree = SOURCE_ROOT; };
+		15400D101C9F107400000135 /* Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Size.h; path = SDL2Platformer/Size.h; sourceTree = SOURCE_ROOT; };
+		15400D111C9F107400000135 /* Vector2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector2D.cpp; path = SDL2Platformer/Vector2D.cpp; sourceTree = SOURCE_ROOT; };
+		15400D121C9F107400000135 /* Vector2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector2D.h; path = SDL2Platformer/Vector2D.h; sourceTree = SOURCE_ROOT; };
+		15400D231C9F10A500000135 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		15400D251C9F124B00000135 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = SDL2Platformer/main.cpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15400CE61C9F100700000135 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15400D241C9F10A500000135 /* SDL2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15400CE01C9F100600000135 = {
+			isa = PBXGroup;
+			children = (
+				15400D231C9F10A500000135 /* SDL2.framework */,
+				15400CEB1C9F100700000135 /* sdl2platformer */,
+				15400CEA1C9F100700000135 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15400CEA1C9F100700000135 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15400CE91C9F100700000135 /* sdl2platformer */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15400CEB1C9F100700000135 /* sdl2platformer */ = {
+			isa = PBXGroup;
+			children = (
+				15400CF31C9F107400000135 /* Animation.cpp */,
+				15400CF41C9F107400000135 /* Animation.h */,
+				15400CF51C9F107400000135 /* Color.cpp */,
+				15400CF61C9F107400000135 /* Color.h */,
+				15400CF71C9F107400000135 /* Game.cpp */,
+				15400CF81C9F107400000135 /* Game.h */,
+				15400CF91C9F107400000135 /* GameContext.cpp */,
+				15400CFA1C9F107400000135 /* GameContext.h */,
+				15400CFB1C9F107400000135 /* GameObject.cpp */,
+				15400CFC1C9F107400000135 /* GameObject.h */,
+				15400CFD1C9F107400000135 /* GameSettings.cpp */,
+				15400CFE1C9F107400000135 /* GameSettings.h */,
+				15400CFF1C9F107400000135 /* GOCamera.cpp */,
+				15400D001C9F107400000135 /* GOCamera.h */,
+				15400D011C9F107400000135 /* GOFrame.cpp */,
+				15400D021C9F107400000135 /* GOFrame.h */,
+				15400D031C9F107400000135 /* GOPlayer.cpp */,
+				15400D041C9F107400000135 /* GOPlayer.h */,
+				15400D051C9F107400000135 /* GOSolid.cpp */,
+				15400D061C9F107400000135 /* GOSolid.h */,
+				15400D071C9F107400000135 /* GOWorld.cpp */,
+				15400D081C9F107400000135 /* GOWorld.h */,
+				15400D091C9F107400000135 /* PhysicsState.cpp */,
+				15400D0A1C9F107400000135 /* PhysicsState.h */,
+				15400D0B1C9F107400000135 /* Rect.cpp */,
+				15400D0C1C9F107400000135 /* Rect.h */,
+				15400D0D1C9F107400000135 /* RenderObject.cpp */,
+				15400D0E1C9F107400000135 /* RenderObject.h */,
+				15400D0F1C9F107400000135 /* Size.cpp */,
+				15400D101C9F107400000135 /* Size.h */,
+				15400D111C9F107400000135 /* Vector2D.cpp */,
+				15400D121C9F107400000135 /* Vector2D.h */,
+				15400D251C9F124B00000135 /* main.cpp */,
+			);
+			path = sdl2platformer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15400CE81C9F100700000135 /* sdl2platformer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15400CF01C9F100700000135 /* Build configuration list for PBXNativeTarget "sdl2platformer" */;
+			buildPhases = (
+				15400CE51C9F100700000135 /* Sources */,
+				15400CE61C9F100700000135 /* Frameworks */,
+				15400CE71C9F100700000135 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sdl2platformer;
+			productName = sdl2platformer;
+			productReference = 15400CE91C9F100700000135 /* sdl2platformer */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15400CE11C9F100700000135 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Богдан Скаленко";
+				TargetAttributes = {
+					15400CE81C9F100700000135 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 15400CE41C9F100700000135 /* Build configuration list for PBXProject "sdl2platformer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 15400CE01C9F100600000135;
+			productRefGroup = 15400CEA1C9F100700000135 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15400CE81C9F100700000135 /* sdl2platformer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15400CE51C9F100700000135 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15400D191C9F107400000135 /* GOCamera.cpp in Sources */,
+				15400D1D1C9F107400000135 /* GOWorld.cpp in Sources */,
+				15400D151C9F107400000135 /* Game.cpp in Sources */,
+				15400D131C9F107400000135 /* Animation.cpp in Sources */,
+				15400D141C9F107400000135 /* Color.cpp in Sources */,
+				15400D261C9F124B00000135 /* main.cpp in Sources */,
+				15400D1B1C9F107400000135 /* GOPlayer.cpp in Sources */,
+				15400D221C9F107400000135 /* Vector2D.cpp in Sources */,
+				15400D1F1C9F107400000135 /* Rect.cpp in Sources */,
+				15400D1C1C9F107400000135 /* GOSolid.cpp in Sources */,
+				15400D201C9F107400000135 /* RenderObject.cpp in Sources */,
+				15400D211C9F107400000135 /* Size.cpp in Sources */,
+				15400D161C9F107400000135 /* GameContext.cpp in Sources */,
+				15400D1A1C9F107400000135 /* GOFrame.cpp in Sources */,
+				15400D1E1C9F107400000135 /* PhysicsState.cpp in Sources */,
+				15400D181C9F107400000135 /* GameSettings.cpp in Sources */,
+				15400D171C9F107400000135 /* GameObject.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		15400CEE1C9F100700000135 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		15400CEF1C9F100700000135 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		15400CF11C9F100700000135 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		15400CF21C9F100700000135 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15400CE41C9F100700000135 /* Build configuration list for PBXProject "sdl2platformer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15400CEE1C9F100700000135 /* Debug */,
+				15400CEF1C9F100700000135 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15400CF01C9F100700000135 /* Build configuration list for PBXNativeTarget "sdl2platformer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15400CF11C9F100700000135 /* Debug */,
+				15400CF21C9F100700000135 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15400CE11C9F100700000135 /* Project object */;
+}
