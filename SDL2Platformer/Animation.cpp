@@ -1,4 +1,4 @@
-#include <SDL_timer.h>
+#include <SDL2/SDL_timer.h>
 #include "Animation.h"
 
 Animation::Animation(std::vector <RenderObject *> frames, Uint32 speed) : Animation::Animation(speed)

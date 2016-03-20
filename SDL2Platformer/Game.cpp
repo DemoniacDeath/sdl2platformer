@@ -55,7 +55,7 @@ void Game::run()
 		{
 			rndx = rand() % x;
 			rndy = rand() % y;
-			brick = new GOSolid(context, Rect(float(-context->world->frame.size.width / 2) + 15 + rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10 ));
+			brick = new GOSolid(context, Rect(float(context->world->frame.size.width / 2) - 15 - rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10 ));
 			brick->renderObject = new RenderObject(context, brick, Color(0x00, 0x00, 0x00, 0xFF));
 			context->world->addChild(brick);
 		}
