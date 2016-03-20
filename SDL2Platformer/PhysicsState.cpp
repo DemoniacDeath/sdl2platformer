@@ -4,7 +4,7 @@
 PhysicsState::PhysicsState(GameObject * object)
 {
 	gameObject = object;
-	gravityForce = 0.5;
+	//gravityForce = 0.1f;
 }
 
 void PhysicsState::change()

@@ -12,6 +12,4 @@ public:
 	RenderObject(GameContext *, GameObject *, Color);
 	void free();
 	SDL_Texture * texture;
-private:
-	GameContext * context;
 };

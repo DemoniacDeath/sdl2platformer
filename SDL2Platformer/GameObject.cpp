@@ -16,7 +16,7 @@ void GameObject::handleEvent(SDL_Event * e)
 {
 	if (children.size())
 	{
-		for (Uint16 i = 0; i < children.size(); i++)
+		for (Uint32 i = 0, size = children.size(); i < size; i++)
 		{
 			children[i]->handleEvent(e);
 		}
@@ -27,7 +27,7 @@ void GameObject::handleKeyboard(const Uint8 * state)
 {
 	if (children.size())
 	{
-		for (Uint16 i = 0; i < children.size(); i++)
+		for (Uint32 i = 0, size = children.size(); i < size; i++)
 		{
 			children[i]->handleKeyboard(state);
 		}
@@ -41,7 +41,7 @@ void GameObject::processPhysics()
 
 	if (children.size())
 	{
-		for (Uint16 i = 0; i < children.size(); i++)
+		for (Uint32 i = 0, size = children.size(); i < size; i++)
 		{
 			children[i]->processPhysics();
 		}
@@ -52,9 +52,9 @@ void GameObject::detectCollisions()
 {
 	std::vector<GameObject *> * allColliders = new std::vector<GameObject *>;
 	detectCollisions(allColliders);
-	for (Uint16 i = 0; i < allColliders->size() - 1; i++)
+	for (Uint32 i = 0, size = allColliders->size(); i < size; i++)
 	{
-		for (Uint16 j = i + 1; j < allColliders->size(); j++)
+		for (Uint32 j = i + 1, size = allColliders->size(); j < size; j++)
 		{
 			(*allColliders)[i]->physics->detectCollision((*allColliders)[j]->physics);
 
@@ -66,7 +66,7 @@ void GameObject::detectCollisions(std::vector<GameObject *> * allColliders)
 {
 	if (physics)
 		allColliders->push_back(this);
-	for (Uint16 i = 0; i < children.size(); i++)
+	for (Uint32 i = 0, size = children.size(); i < size; i++)
 	{
 		children[i]->detectCollisions(allColliders);
 	}
@@ -82,6 +82,18 @@ void GameObject::handleExitCollision(GameObject * collider)
 
 }
 
+void GameObject::animate()
+{
+	if (animation)
+	{
+		this->renderObject = animation->animate();
+	}
+	for (Uint32 i = 0, size = children.size(); i < size; i++)
+	{
+		children[i]->animate();
+	}
+}
+
 void GameObject::render(Vector2D localBasis, Vector2D cameraPosition, Size cameraSize)
 {
 	if (renderObject)
@@ -95,15 +107,15 @@ void GameObject::render(Vector2D localBasis, Vector2D cameraPosition, Size camer
 		Vector2D frameTransform = Vector2D(-frame.size.width / 2, -frame.size.height / 2);
 		Vector2D frameTransformedPosition = globalPosition + frameTransform;
 		Vector2D renderPosition = frameTransformedPosition - cameraTransformedPosition;
-		rect.x = int(context->settings->windowWidth * (renderPosition.x / cameraSize.width));
-		rect.y = int(context->settings->windowHeight * (renderPosition.y / cameraSize.height));
-		rect.w = int(context->settings->windowWidth * (frame.size.width / cameraSize.width));
-		rect.h = int(context->settings->windowHeight * (frame.size.height / cameraSize.height));
+		rect.x = (int)roundf(context->settings->windowWidth * (renderPosition.x / cameraSize.width));
+		rect.y = (int)roundf(context->settings->windowHeight * (renderPosition.y / cameraSize.height));
+		rect.w = (int)roundf(context->settings->windowWidth * (frame.size.width / cameraSize.width));
+		rect.h = (int)roundf(context->settings->windowHeight * (frame.size.height / cameraSize.height));
 		SDL_RenderCopy(context->renderer, renderObject->texture, NULL, &rect);
 	}
 	if (children.size())
 	{
-		for (Uint16 i = 0; i < children.size(); i++)
+		for (Uint32 i = 0, size = children.size(); i < size; i++)
 		{
 			children[i]->render(localBasis + frame.center, cameraPosition, cameraSize);
 		}
@@ -118,18 +130,29 @@ void GameObject::addChild(GameObject * child)
 
 void GameObject::free()
 {
-	if (renderObject)
+	if (!animation && renderObject)
+	{
 		renderObject->free();
+		delete renderObject;
+		renderObject = NULL;
+	}
+
+	if (animation)
+	{
+		animation->free();
+		delete animation;
+		animation = NULL;
+	}
 
 	if (children.size())
 	{
-		for (Uint16 i = 0; i < children.size(); i++)
+		for (Uint32 i = 0, size = children.size(); i < size; i++)
 		{
 			children[i]->free();
 		}
 		children.clear();
 	}
-
+	
 	context = NULL;
 }
 

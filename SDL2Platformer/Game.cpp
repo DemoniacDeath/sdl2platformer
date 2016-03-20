@@ -1,5 +1,6 @@
 #include "Game.h"
 
+#include <time.h>
 #include "RenderObject.h"
 #include "GOPlayer.h"
 #include "GOFrame.h"
@@ -34,9 +35,11 @@ void Game::run()
 		context->world->camera->originalSize.height /= 2;
 
 		GOPlayer * player = new GOPlayer(context, Rect( 0,20,10,20 ));
-		player->renderObject = new RenderObject(context, player, Color(0x00, 0xFF, 0x00, 0xFF));
-		player->speed = 4;
-		player->jumpSpeed = 10;
+		player->animation = new Animation(100);
+		player->animation->addFrame(new RenderObject(context, player, Color(0x00, 0xFF, 0x00, 0xFF)));
+		player->speed = 1.3f;
+		player->jumpSpeed = 2.5f;
+		player->physics->gravityForce = 0.1f;
 		player->addChild(context->world->camera);
 
 		context->world->addChild(player);
@@ -44,9 +47,15 @@ void Game::run()
 		context->world->addChild(new GOFrame(context, Rect( 0,0,context->world->frame.size.width,context->world->frame.size.height ), 10));
 
 		GOSolid * brick;
-		for (int i = 0; i < 3; i++)
+		srand((unsigned int)time(NULL));
+		int x = int(context->world->frame.size.width / 10 - 2);
+		int y = int(context->world->frame.size.height / 10 - 2);
+		int rndx, rndy;
+		for (int i = 0; i < 100; i++)
 		{
-			brick = new GOSolid(context, Rect(float(-context->world->frame.size.width/2) + 15 + i * 10, float(context->world->frame.size.height/2) - 15, 10, 10 ));
+			rndx = rand() % x;
+			rndy = rand() % y;
+			brick = new GOSolid(context, Rect(float(-context->world->frame.size.width / 2) + 15 + rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10 ));
 			brick->renderObject = new RenderObject(context, brick, Color(0x00, 0x00, 0x00, 0xFF));
 			context->world->addChild(brick);
 		}
@@ -71,6 +80,7 @@ void Game::run()
 			context->world->handleKeyboard(SDL_GetKeyboardState(NULL));
 			context->world->processPhysics();
 			context->world->detectCollisions();
+			context->world->animate();
 
 			//Clear screen
 			SDL_SetRenderDrawColor(context->renderer, 0xFF, 0xFF, 0xFF, 0xFF);

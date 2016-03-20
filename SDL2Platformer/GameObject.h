@@ -5,6 +5,7 @@
 #include "Rect.h"
 #include "RenderObject.h"
 #include "PhysicsState.h"
+#include "Animation.h"
 
 class GameContext;
 
@@ -20,6 +21,7 @@ public:
 	virtual void detectCollisions(std::vector<GameObject *> *);
 	virtual void handleCollision(GameObject *, Vector2D);
 	virtual void handleExitCollision(GameObject *);
+	virtual void animate();
 	virtual void render(Vector2D, Vector2D, Size);
 	virtual void addChild(GameObject *);
 	virtual void free();
@@ -27,6 +29,7 @@ public:
 
 	std::vector<GameObject *> children;
 	RenderObject * renderObject;
+	Animation * animation;
 	PhysicsState * physics;
 	Rect frame;
 	GameObject * parent;
