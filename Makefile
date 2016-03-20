@@ -3,9 +3,9 @@ EXECUTABLE=bin/linux/sdl2platformer
 SOURCES := $(wildcard SDL2Platformer/*.cpp)
 OBJECTS := $(addprefix obj/,$(notdir $(SOURCES:.cpp=.o)))
 LDFLAGS := -lSDL2
-CFLAGS=-c -std=c++11 -Wall -Werror
+CFLAGS=-c -g -std=c++11 -Wall -Werror
 
-all: $(SOURCES) $(EXECUTABLE) cleanobj
+all: $(SOURCES) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) -o $@ $^

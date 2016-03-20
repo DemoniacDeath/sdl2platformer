@@ -10,8 +10,8 @@ public:
 	void handleKeyboard(const Uint8 *);
 	void handleCollision(GameObject *, Vector2D);
 
-	float speed;
-	float jumpSpeed;
+	float speed = 0.0f;
+	float jumpSpeed = 0.0f;
 	bool jumped = false;
 	Size originalSize;
 	bool crouched = false;

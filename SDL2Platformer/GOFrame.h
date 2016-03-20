@@ -7,7 +7,7 @@ class GOFrame :
 {
 public:
 	GOFrame(GameContext *, Rect, int);
-	int width;
-	GOSolid * floor, * wallLeft, * wallRight, * ceiling;
+	int width = 0;
+	GOSolid * floor = NULL, * wallLeft = NULL, * wallRight = NULL, * ceiling = NULL;
 };
 

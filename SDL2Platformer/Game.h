@@ -11,5 +11,5 @@ private:
 	bool init();
 	void exit();
 	bool quit = false;
-	GameContext * context;
+	GameContext * context = NULL;
 };

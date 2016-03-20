@@ -28,12 +28,12 @@ public:
 	Vector2D globalPosition();
 
 	std::vector<GameObject *> children;
-	RenderObject * renderObject;
-	Animation * animation;
-	PhysicsState * physics;
+	RenderObject * renderObject = NULL;
+	Animation * animation = NULL;
+	PhysicsState * physics = NULL;
 	Rect frame;
-	GameObject * parent;
+	GameObject * parent = NULL;
 protected:
-	GameContext * context;
+	GameContext * context = NULL;
 };
 

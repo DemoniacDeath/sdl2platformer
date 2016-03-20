@@ -12,7 +12,7 @@ public:
 	RenderObject * animate();
 	void free();
 	std::vector <RenderObject *> frames;
-	Uint32 startTick;
-	Uint32 speed;
+	Uint32 startTick = 0;
+	Uint32 speed = 1;
 };
 

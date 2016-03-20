@@ -11,5 +11,5 @@ public:
 	RenderObject(GameContext *, SDL_Texture *);
 	RenderObject(GameContext *, GameObject *, Color);
 	void free();
-	SDL_Texture * texture;
+	SDL_Texture * texture = NULL;
 };

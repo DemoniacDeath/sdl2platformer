@@ -10,9 +10,9 @@ public:
 	void change();
 	void detectCollision(PhysicsState *);
 	Vector2D velocity;
-	bool gravity;
-	float gravityForce;
+	bool gravity = false;
+	float gravityForce = 0.f;
 protected:
-	GameObject * gameObject;
+	GameObject * gameObject = NULL;
 };
 

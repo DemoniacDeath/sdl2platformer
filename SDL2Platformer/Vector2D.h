@@ -17,7 +17,7 @@ public:
 	Vector2D operator+=(Vector2D);
 	Vector2D operator-=(Vector2D);
 
-	float x;
-	float y;
+	float x = 0;
+	float y = 0;
 };
 

@@ -4,7 +4,7 @@ class Size
 public:
 	Size();
 	Size(float, float);
-	float width;
-	float height;
+	float width = 0;
+	float height = 0;
 };
 

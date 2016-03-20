@@ -9,9 +9,9 @@ class GameContext {
 public:
 	GameContext(GameSettings *);
 	void free();
-	GameSettings * settings;
-	SDL_Window * window;
-	SDL_Renderer * renderer;
-	GOWorld * world;
-	bool quit;
+	GameSettings * settings = NULL;
+	SDL_Window * window = NULL;
+	SDL_Renderer * renderer = NULL;
+	GOWorld * world = NULL;
+	bool quit = false;
 };

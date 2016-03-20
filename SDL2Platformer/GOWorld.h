@@ -9,7 +9,7 @@ public:
 	GOWorld(GameContext *, Rect);
 	void handleEvent(SDL_Event *);
 	void render();
-	GOCamera * camera;
+	GOCamera * camera = NULL;
 
 };
 
