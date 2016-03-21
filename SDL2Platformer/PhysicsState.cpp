@@ -9,16 +9,19 @@ PhysicsState::PhysicsState(GameObject * object)
 
 void PhysicsState::change()
 {
-	gameObject->frame.center.x += velocity.x;
-	gameObject->frame.center.y += velocity.y;
 	if (gravity)
 	{
 		velocity.y += gravityForce;
 	}
+	gameObject->frame.center.x += velocity.x;
+	gameObject->frame.center.y += velocity.y;
 }
 
 void PhysicsState::detectCollision(PhysicsState * c)
 {
+	if (still && c->still)
+		return;
+
 	float x1 = gameObject->globalPosition().x - gameObject->frame.size.width / 2;
 	float x2 = c->gameObject->globalPosition().x - c->gameObject->frame.size.width / 2;
 	float X1 = x1 + gameObject->frame.size.width;
@@ -33,6 +36,17 @@ void PhysicsState::detectCollision(PhysicsState * c)
 	float diffY1 = Y1 - y2;
 	float diffY2 = y1 - Y2;
 
+	Collision * collision = NULL;
+	std::set<Collision *>::const_iterator iterator;
+	for (iterator = collisions.begin(); iterator != collisions.end(); ++iterator)
+	{
+		if (((*iterator)->firstCollider == gameObject && (*iterator)->secondCollider == c->gameObject) ||
+			(*iterator)->secondCollider == gameObject && (*iterator)->firstCollider == c->gameObject)
+		{
+			collision = (*iterator);
+			break;
+		}
+	}
 	if (diffX1 > 0 &&
 		diffX2 < 0 &&
 		diffY1 > 0 &&
@@ -42,12 +56,27 @@ void PhysicsState::detectCollision(PhysicsState * c)
 			(abs(diffX1)<abs(diffX2) ? diffX1 : diffX2),
 			(abs(diffY1)<abs(diffY2) ? diffY1 : diffY2)
 			);
-		gameObject->handleCollision(c->gameObject, overlapArea);
-		c->gameObject->handleCollision(gameObject, overlapArea * -1);
+		if (!collision)
+		{
+			collision = new Collision(gameObject, c->gameObject, overlapArea);
+			collisions.insert(collision);
+			c->collisions.insert(collision);
+
+			gameObject->handleEnterCollision(*collision);
+			c->gameObject->handleEnterCollision(*collision);
+		}
+		else
+		{
+			collision->collisionVector = overlapArea;
+		}
+		gameObject->handleCollision(*collision);
+		c->gameObject->handleCollision(*collision);
 	}
-	else
+	else if (collision)
 	{
-		gameObject->handleExitCollision(c->gameObject);
-		c->gameObject->handleExitCollision(gameObject);
+		collisions.erase(collision);
+		c->collisions.erase(collision);
+		gameObject->handleExitCollision(*collision);
+		c->gameObject->handleExitCollision(*collision);
 	}
 }

@@ -6,6 +6,7 @@
 #include "RenderObject.h"
 #include "PhysicsState.h"
 #include "Animation.h"
+#include "Collision.h"
 
 class GameContext;
 
@@ -19,8 +20,9 @@ public:
 	virtual void processPhysics();
 	virtual void detectCollisions();
 	virtual void detectCollisions(std::vector<GameObject *> *);
-	virtual void handleCollision(GameObject *, Vector2D);
-	virtual void handleExitCollision(GameObject *);
+	virtual void handleEnterCollision(Collision);
+	virtual void handleExitCollision(Collision);
+	virtual void handleCollision(Collision);
 	virtual void animate();
 	virtual void render(Vector2D, Vector2D, Size);
 	virtual void addChild(GameObject *);

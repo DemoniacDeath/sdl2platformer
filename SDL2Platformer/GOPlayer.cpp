@@ -4,6 +4,7 @@ GOPlayer::GOPlayer(GameContext * context, Rect frame) : GameObject(context, fram
 {
 	physics = new PhysicsState(this);
 	physics->gravity = true;
+	physics->still = false;
 	originalSize = frame.size;
 }
 
@@ -101,8 +102,26 @@ void GOPlayer::handleKeyboard(const Uint8 * state)
 	GameObject::handleKeyboard(state);
 }
 
-void GOPlayer::handleCollision(GameObject * collider, Vector2D collisionArea)
+void GOPlayer::handleEnterCollision(Collision collision)
 {
+}
+
+void GOPlayer::handleExitCollision(Collision collision)
+{
+	if (!physics->collisions.size())
+	{
+		jumped = true;
+	}
+}
+
+void GOPlayer::handleCollision(Collision collision)
+{
+	Vector2D collisionArea;
+	collisionArea = collision.collisionVector;
+	if (collision.secondCollider == this)
+	{
+		collisionArea *= -1;
+	}
 	if (abs(collisionArea.x) < abs(collisionArea.y))
 	{
 		frame.center.x -= collisionArea.x;

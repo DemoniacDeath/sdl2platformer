@@ -72,15 +72,11 @@ void GameObject::detectCollisions(std::vector<GameObject *> * allColliders)
 	}
 }
 
-void GameObject::handleCollision(GameObject * collider, Vector2D collisionArea)
-{
-	
-}
+void GameObject::handleEnterCollision(Collision collision) {}
 
-void GameObject::handleExitCollision(GameObject * collider)
-{
+void GameObject::handleExitCollision(Collision collision) {}
 
-}
+void GameObject::handleCollision(Collision collision) {}
 
 void GameObject::animate()
 {
