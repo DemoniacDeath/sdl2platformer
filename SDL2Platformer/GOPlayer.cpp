@@ -16,7 +16,10 @@ void GOPlayer::handleEvent(SDL_Event * e)
 		case SDLK_g:
 			physics->gravity = !physics->gravity;
 			if (!physics->gravity)
+			{
+				jumped = true;
 				physics->velocity *= 0;
+			}
 			break;
 		}
 	}
@@ -88,7 +91,7 @@ void GOPlayer::handleKeyboard(const Uint8 * state)
 		animation = moveAnimation;
 	if ((moveLeft || moveRight) && !jumped && crouched)
 		animation = crouchMoveAnimation;
-	if ((moveLeft || moveRight) && jumped && crouched)
+	if (jumped && crouched)
 		animation = crouchAnimation;
 	if (jumped && !crouched)
 		animation = jumpAnimation;
@@ -107,7 +110,7 @@ void GOPlayer::handleCollision(GameObject * collider, Vector2D collisionArea)
 	}
 	else
 	{
-		if (collisionArea.y > 0 && jumped)
+		if (collisionArea.y > 0 && jumped && physics->gravity)
 		{
 			jumped = false;
 		}
