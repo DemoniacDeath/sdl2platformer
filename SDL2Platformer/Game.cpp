@@ -35,8 +35,13 @@ void Game::run()
 		context->world->camera->originalSize.height /= 2;
 
 		GOPlayer * player = new GOPlayer(context, Rect( 0,20,10,20 ));
-		player->animation = new Animation(100);
-		player->animation->addFrame(new RenderObject(context, player, Color(0x00, 0xFF, 0x00, 0xFF)));
+
+		player->idleAnimation = Animation::animationWithSingleRenderObject(RenderObject::renderObjectFromFile(context, "img/idle.png"));
+		player->moveAnimation = Animation::animationWithSpeedAndTextureFile(80, context, "img/move.png", 40, 80, 6);
+		player->jumpAnimation = Animation::animationWithSingleRenderObject(RenderObject::renderObjectFromFile(context, "img/jump.png"));
+		player->crouchAnimation = Animation::animationWithSingleRenderObject(RenderObject::renderObjectFromFile(context, "img/crouch.png"));
+		player->crouchMoveAnimation = Animation::animationWithSingleRenderObject(RenderObject::renderObjectFromFile(context, "img/crouch.png"));
+
 		player->speed = 1.3f;
 		player->jumpSpeed = 2.5f;
 		player->physics->gravityForce = 0.1f;
@@ -56,7 +61,7 @@ void Game::run()
 			rndx = rand() % x;
 			rndy = rand() % y;
 			brick = new GOSolid(context, Rect(float(context->world->frame.size.width / 2) - 15 - rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10 ));
-			brick->renderObject = new RenderObject(context, brick, Color(0x00, 0x00, 0x00, 0xFF));
+			brick->renderObject = RenderObject::renderObjectFromColor(context, Color(0x00, 0x00, 0x00, 0xFF));
 			context->world->addChild(brick);
 		}
 

@@ -1,3 +1,4 @@
+#include <SDL2/SDL_image.h>
 #include "GameContext.h"
 
 GameContext::GameContext(GameSettings * settings)
@@ -24,6 +25,13 @@ GameContext::GameContext(GameSettings * settings)
 	}
 	//Initialize renderer color
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+
+	int imgFlags = IMG_INIT_PNG;
+	if (!(IMG_Init(imgFlags) & imgFlags))
+	{
+		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+		return;
+	}
 }
 
 void GameContext::free()

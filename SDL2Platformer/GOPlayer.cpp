@@ -26,14 +26,18 @@ void GOPlayer::handleEvent(SDL_Event * e)
 void GOPlayer::handleKeyboard(const Uint8 * state)
 {
 	bool sitDown = false;
+	bool moveLeft = false;
+	bool moveRight = false;
 	Vector2D moveVector = Vector2D();
 	if (state[SDL_SCANCODE_LEFT] || state[SDL_SCANCODE_A])
 	{
 		moveVector += Vector2D(-speed, 0);
+		moveLeft = true;
 	}
 	if (state[SDL_SCANCODE_RIGHT] || state[SDL_SCANCODE_D])
 	{
 		moveVector += Vector2D(speed, 0);
+		moveRight = true;
 	}
 	if (state[SDL_SCANCODE_UP] || state[SDL_SCANCODE_W] || state[SDL_SCANCODE_SPACE])
 	{
@@ -62,6 +66,33 @@ void GOPlayer::handleKeyboard(const Uint8 * state)
 		}
 	}
 	setCrouched(sitDown);
+
+	if (moveLeft && !moveRight)
+	{
+		moveAnimation->turnLeft(true);
+		crouchAnimation->turnLeft(true);
+		crouchMoveAnimation->turnLeft(true);
+	}
+	if (moveRight && !moveLeft)
+	{
+		moveAnimation->turnLeft(false);
+		crouchAnimation->turnLeft(false);
+		crouchMoveAnimation->turnLeft(false);
+	}
+
+	if (!moveLeft && !moveRight && !jumped && !crouched)
+		animation = idleAnimation;
+	if (!moveLeft && !moveRight && !jumped && crouched)
+		animation = crouchAnimation;
+	if ((moveLeft || moveRight) && !jumped && !crouched)
+		animation = moveAnimation;
+	if ((moveLeft || moveRight) && !jumped && crouched)
+		animation = crouchMoveAnimation;
+	if ((moveLeft || moveRight) && jumped && crouched)
+		animation = crouchAnimation;
+	if (jumped && !crouched)
+		animation = jumpAnimation;
+
 	frame.center.x += moveVector.x;
 	frame.center.y += moveVector.y;
 	GameObject::handleKeyboard(state);
@@ -99,4 +130,22 @@ void GOPlayer::setCrouched(bool crouched)
 		frame.center.y -= frame.size.height / 2;
 		frame.size.height = originalSize.height;
 	}
+}
+
+void GOPlayer::free()
+{
+	if (idleAnimation)
+		idleAnimation->free();
+	if (moveAnimation)
+		moveAnimation->free();
+	if (jumpAnimation)
+		jumpAnimation->free();
+	if (crouchAnimation)
+		crouchAnimation->free();
+	if (crouchMoveAnimation)
+		crouchMoveAnimation->free();
+
+	renderObject = NULL;
+	animation = NULL;
+	GameObject::free();
 }

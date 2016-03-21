@@ -100,18 +100,7 @@ void GameObject::render(Vector2D localBasis, Vector2D cameraPosition, Size camer
 	{
 		Vector2D globalPosition = frame.center;
 		globalPosition += localBasis;
-		SDL_Rect rect;
-
-		Vector2D cameraTransform = Vector2D(-cameraSize.width / 2, -cameraSize.height / 2);
-		Vector2D cameraTransformedPosition = cameraPosition + cameraTransform;
-		Vector2D frameTransform = Vector2D(-frame.size.width / 2, -frame.size.height / 2);
-		Vector2D frameTransformedPosition = globalPosition + frameTransform;
-		Vector2D renderPosition = frameTransformedPosition - cameraTransformedPosition;
-		rect.x = (int)roundf(context->settings->windowWidth * (renderPosition.x / cameraSize.width));
-		rect.y = (int)roundf(context->settings->windowHeight * (renderPosition.y / cameraSize.height));
-		rect.w = (int)roundf(context->settings->windowWidth * (frame.size.width / cameraSize.width));
-		rect.h = (int)roundf(context->settings->windowHeight * (frame.size.height / cameraSize.height));
-		SDL_RenderCopy(context->renderer, renderObject->texture, NULL, &rect);
+		renderObject->render(context, globalPosition, frame.size, cameraPosition, cameraSize);
 	}
 	if (children.size())
 	{
