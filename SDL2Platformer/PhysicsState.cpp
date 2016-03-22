@@ -4,7 +4,11 @@
 PhysicsState::PhysicsState(GameObject * object)
 {
 	gameObject = object;
-	//gravityForce = 0.1f;
+}
+
+PhysicsState::~PhysicsState()
+{
+	free();
 }
 
 void PhysicsState::change()
@@ -78,5 +82,15 @@ void PhysicsState::detectCollision(PhysicsState * c)
 		c->collisions.erase(collision);
 		gameObject->handleExitCollision(*collision);
 		c->gameObject->handleExitCollision(*collision);
+	}
+}
+
+void PhysicsState::free()
+{
+	//TODO: I have to find a way to delete collision from both colliders.
+	std::set <Collision*>::iterator deleteIterator = collisions.begin();
+	while (deleteIterator != collisions.end()) {
+		delete (*deleteIterator);
+		deleteIterator = collisions.erase(deleteIterator);
 	}
 }

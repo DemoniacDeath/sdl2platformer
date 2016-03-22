@@ -15,6 +15,7 @@ class GameObject
 public:
 	GameObject(GameContext *);
 	GameObject(GameContext *, Rect);
+	~GameObject();
 	virtual void handleEvent(SDL_Event *);
 	virtual void handleKeyboard(const Uint8 *);
 	virtual void processPhysics();
@@ -26,6 +27,7 @@ public:
 	virtual void animate();
 	virtual void render(Vector2D, Vector2D, Size);
 	virtual void addChild(GameObject *);
+	virtual void clean();
 	virtual void free();
 	Vector2D globalPosition();
 
@@ -34,8 +36,9 @@ public:
 	Animation * animation = NULL;
 	PhysicsState * physics = NULL;
 	Rect frame;
-	GameObject * parent = NULL;
+	bool removed = false;
 protected:
+	GameObject * parent = NULL;
 	GameContext * context = NULL;
 };
 

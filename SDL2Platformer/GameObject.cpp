@@ -12,6 +12,11 @@ GameObject::GameObject(GameContext * context, Rect frame)
 	this->frame = frame;
 }
 
+GameObject::~GameObject()
+{
+	free();
+}
+
 void GameObject::handleEvent(SDL_Event * e)
 {
 	if (children.size())
@@ -57,7 +62,6 @@ void GameObject::detectCollisions()
 		for (Uint32 j = i + 1, size = allColliders->size(); j < size; j++)
 		{
 			(*allColliders)[i]->physics->detectCollision((*allColliders)[j]->physics);
-
 		}
 	}
 }
@@ -113,6 +117,23 @@ void GameObject::addChild(GameObject * child)
 	child->parent = this;
 }
 
+void GameObject::clean()
+{
+	if (children.size())
+	{
+		for (std::vector<GameObject *>::const_iterator i = children.begin(); i != children.end(); ++i)
+		{
+			if ((*i)->removed)
+			{
+				delete *i;
+				i = children.erase(i);
+				if (i == children.end() || !children.size())
+					break;
+			}
+		}
+	}
+}
+
 void GameObject::free()
 {
 	if (!animation && renderObject)
@@ -129,12 +150,11 @@ void GameObject::free()
 		animation = NULL;
 	}
 
+	if (physics)
+		delete physics;
+
 	if (children.size())
 	{
-		for (Uint32 i = 0, size = children.size(); i < size; i++)
-		{
-			children[i]->free();
-		}
 		children.clear();
 	}
 	

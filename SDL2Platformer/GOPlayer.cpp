@@ -1,4 +1,5 @@
 #include "GOPlayer.h"
+#include "GOConsumable.h"
 
 GOPlayer::GOPlayer(GameContext * context, Rect frame) : GameObject(context, frame)
 {
@@ -104,6 +105,17 @@ void GOPlayer::handleKeyboard(const Uint8 * state)
 
 void GOPlayer::handleEnterCollision(Collision collision)
 {
+	GameObject * collider;
+	if (collision.firstCollider == this)
+		collider = collision.secondCollider;
+	else
+		collider = collision.firstCollider;
+	if (GOConsumable * consumable = dynamic_cast<GOConsumable *>(collider))
+	{
+		collider->removed = true;
+		speed += 0.01;
+		jumpSpeed += 0.01;
+	}
 }
 
 void GOPlayer::handleExitCollision(Collision collision)
@@ -122,19 +134,12 @@ void GOPlayer::handleCollision(Collision collision)
 	{
 		collisionArea *= -1;
 	}
-	if (abs(collisionArea.x) < abs(collisionArea.y))
-	{
-		frame.center.x -= collisionArea.x;
-		physics->velocity.x = 0;
-	}
-	else
+	if (abs(collisionArea.x) > abs(collisionArea.y))
 	{
 		if (collisionArea.y > 0 && jumped && physics->gravity)
 		{
 			jumped = false;
 		}
-		frame.center.y -= collisionArea.y;
-		physics->velocity.y = 0;
 	}
 }
 

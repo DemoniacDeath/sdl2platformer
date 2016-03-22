@@ -4,6 +4,7 @@
 #include "RenderObject.h"
 #include "GOPlayer.h"
 #include "GOFrame.h"
+#include "GOConsumable.h"
 
 bool Game::init()
 {
@@ -51,25 +52,37 @@ void Game::run()
 
 		context->world->addChild(new GOFrame(context, Rect( 0,0,context->world->frame.size.width,context->world->frame.size.height ), 10));
 
-		GOSolid * brick;
+		GameObject * object;
 		srand((unsigned int)time(NULL));
 		int x = int(context->world->frame.size.width / 10 - 2);
 		int y = int(context->world->frame.size.height / 10 - 2);
 		int rndx, rndy;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 150; i++)
 		{
+			//TODO: no overplacing
 			rndx = rand() % x;
 			rndy = rand() % y;
-			brick = new GOSolid(context, Rect(float(context->world->frame.size.width / 2) - 15 - rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10 ));
-			brick->renderObject = RenderObject::renderObjectFromColor(context, Color(0x00, 0x00, 0x00, 0xFF));
-			context->world->addChild(brick);
+			if (rand() % 2)
+			{
+				object = new GOSolid(context, Rect(float(context->world->frame.size.width / 2) - 15 - rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10));
+				object->renderObject = RenderObject::renderObjectFromColor(context, Color(0x00, 0x00, 0x00, 0xFF));
+				context->world->addChild(object);
+			}
+			else
+			{
+				object = new GOConsumable(context, Rect(float(context->world->frame.size.width / 2) - 15 - rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10));
+				object->renderObject = RenderObject::renderObjectFromColor(context, Color(0x00, 0xFF, 0x00, 0xFF));
+				context->world->addChild(object);
+			}
 		}
 
-		brick = NULL;
+		object = NULL;
 		player = NULL;
 
 		while (!context->quit)
 		{
+			context->world->clean();
+
 			//Handle events on queue
 			while (SDL_PollEvent(&e) != 0)
 			{

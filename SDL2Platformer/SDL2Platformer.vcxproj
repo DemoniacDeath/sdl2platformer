@@ -137,6 +137,7 @@
     <ClCompile Include="GameContext.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GOCamera.cpp" />
+    <ClCompile Include="GOConsumable.cpp" />
     <ClCompile Include="GOFrame.cpp" />
     <ClCompile Include="GOPlayer.cpp" />
     <ClCompile Include="GOSolid.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="GameContext.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GOCamera.h" />
+    <ClInclude Include="GOConsumable.h" />
     <ClInclude Include="GOFrame.h" />
     <ClInclude Include="GOPlayer.h" />
     <ClInclude Include="GOSolid.h" />

@@ -9,8 +9,10 @@ class PhysicsState
 {
 public:
 	PhysicsState(GameObject *);
+	~PhysicsState();
 	void change();
 	void detectCollision(PhysicsState *);
+	void free();
 	Vector2D velocity;
 	bool gravity = false;
 	bool still = true;

@@ -1,7 +1,11 @@
 #pragma once
+#include <SDL2/SDL.h>
 #include "GameObject.h"
 #include "Rect.h"
 #include "Collision.h"
+#include "Animation.h"
+
+class GameContext;
 
 class GOPlayer :
 	public GameObject
