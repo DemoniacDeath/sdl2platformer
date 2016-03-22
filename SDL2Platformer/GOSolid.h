@@ -8,6 +8,7 @@ class GOSolid :
 {
 public:
 	GOSolid(GameContext *, Rect);
+	void handleEnterCollision(Collision);
 	void handleCollision(Collision);
 };
 

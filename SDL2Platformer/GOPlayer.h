@@ -17,6 +17,8 @@ public:
 	void handleEnterCollision(Collision);
 	void handleExitCollision(Collision);
 	void handleCollision(Collision);
+	void dealDamage(int);
+	void die();
 	void free();
 
 	float speed = 0.0f;
@@ -24,6 +26,7 @@ public:
 	bool jumped = false;
 	Size originalSize;
 	bool crouched = false;
+	int health;
 
 	Animation * idleAnimation = NULL;
 	Animation * moveAnimation = NULL;

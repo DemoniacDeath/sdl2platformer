@@ -1,8 +1,28 @@
 #include "GOSolid.h"
+#include "GOPlayer.h"
 
 GOSolid::GOSolid(GameContext * context, Rect frame) : GameObject(context, frame)
 {
 	physics = new PhysicsState(this);
+}
+
+void GOSolid::handleEnterCollision(Collision collision)
+{
+	GameObject * collider;
+	if (collision.firstCollider == this)
+	{
+		collider = collision.secondCollider;
+	}
+	else
+	{
+		collider = collision.firstCollider;
+	}
+	GOPlayer * player;
+	if (collider->physics->velocity.y > 5 && (player = dynamic_cast<GOPlayer *>(collider)))
+	{
+		player->dealDamage((int)roundf(collider->physics->velocity.y * 10));
+		std::cout << "Ouch!" << '\n';
+	}
 }
 
 void GOSolid::handleCollision(Collision collision)

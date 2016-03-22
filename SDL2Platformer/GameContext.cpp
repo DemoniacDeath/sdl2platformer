@@ -39,7 +39,7 @@ void GameContext::free()
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	delete settings;
-	world->free();
+	delete world;
 	settings = NULL;
 	window = NULL;
 	renderer = NULL;

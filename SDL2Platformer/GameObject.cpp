@@ -155,6 +155,13 @@ void GameObject::free()
 
 	if (children.size())
 	{
+		std::vector<GameObject *>::const_iterator i = children.begin();
+		while (i != children.end())
+		{
+			//delete (*i);
+			(*i)->parent = NULL;
+			i++;
+		}
 		children.clear();
 	}
 	

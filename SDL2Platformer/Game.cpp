@@ -54,24 +54,42 @@ void Game::run()
 
 		GameObject * object;
 		srand((unsigned int)time(NULL));
+		int count = 150;
 		int x = int(context->world->frame.size.width / 10 - 2);
 		int y = int(context->world->frame.size.height / 10 - 2);
 		int rndx, rndy;
-		for (int i = 0; i < 150; i++)
+		int * takenx = new int[count];
+		int * takeny = new int[count];
+		for (int i = 0; i < count; i++)
 		{
-			//TODO: no overplacing
-			rndx = rand() % x;
-			rndy = rand() % y;
+			bool taken;
+			do {
+				taken = false;
+				rndx = rand() % x;
+				rndy = rand() % y;
+				for (int j = 0; j <= i; j++)
+				{
+					if (rndx == takenx[j] && rndy == takeny[j])
+					{
+						taken = true;
+						break;
+					}
+				}
+			} while (taken);
+
+			takenx[i] = rndx;
+			takeny[i] = rndy;
+
 			if (rand() % 2)
 			{
 				object = new GOSolid(context, Rect(float(context->world->frame.size.width / 2) - 15 - rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10));
-				object->renderObject = RenderObject::renderObjectFromColor(context, Color(0x00, 0x00, 0x00, 0xFF));
+				object->renderObject = RenderObject::renderObjectFromFile(context, "img/brick.png");
 				context->world->addChild(object);
 			}
 			else
 			{
 				object = new GOConsumable(context, Rect(float(context->world->frame.size.width / 2) - 15 - rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10));
-				object->renderObject = RenderObject::renderObjectFromColor(context, Color(0x00, 0xFF, 0x00, 0xFF));
+				object->renderObject = RenderObject::renderObjectFromColor(context, Color(0x00, 0xFF, 0x00, 0x80));
 				context->world->addChild(object);
 			}
 		}

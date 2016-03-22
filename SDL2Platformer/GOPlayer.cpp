@@ -7,6 +7,7 @@ GOPlayer::GOPlayer(GameContext * context, Rect frame) : GameObject(context, fram
 	physics->gravity = true;
 	physics->still = false;
 	originalSize = frame.size;
+	health = 100;
 }
 
 void GOPlayer::handleEvent(SDL_Event * e)
@@ -113,8 +114,8 @@ void GOPlayer::handleEnterCollision(Collision collision)
 	if (GOConsumable * consumable = dynamic_cast<GOConsumable *>(collider))
 	{
 		collider->removed = true;
-		speed += 0.01;
-		jumpSpeed += 0.01;
+		speed += 0.01f;
+		jumpSpeed += 0.01f;
 	}
 }
 
@@ -143,20 +144,21 @@ void GOPlayer::handleCollision(Collision collision)
 	}
 }
 
-void GOPlayer::setCrouched(bool crouched)
+void GOPlayer::dealDamage(int damage)
 {
-	if (crouched && !this->crouched)
+	health -= damage;
+	std::cout << "Health: " << health << '\n';
+	if (health < 0)
 	{
-		this->crouched = true;
-		frame.size.height = originalSize.height / 2;
-		frame.center.y += frame.size.height / 2;
+		die();
 	}
-	else if (!crouched && this->crouched)
-	{
-		this->crouched = false;
-		frame.center.y -= frame.size.height / 2;
-		frame.size.height = originalSize.height;
-	}
+}
+
+void GOPlayer::die()
+{
+	health = 0;
+	std::cout << "Dead!\n";
+	//removed = true;
 }
 
 void GOPlayer::free()
@@ -176,3 +178,20 @@ void GOPlayer::free()
 	animation = NULL;
 	GameObject::free();
 }
+
+void GOPlayer::setCrouched(bool crouched)
+{
+	if (crouched && !this->crouched)
+	{
+		this->crouched = true;
+		frame.size.height = originalSize.height / 2;
+		frame.center.y += frame.size.height / 2;
+	}
+	else if (!crouched && this->crouched)
+	{
+		this->crouched = false;
+		frame.center.y -= frame.size.height / 2;
+		frame.size.height = originalSize.height;
+	}
+}
+
