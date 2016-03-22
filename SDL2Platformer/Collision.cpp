@@ -2,9 +2,8 @@
 #include "GameObject.h"
 
 
-Collision::Collision(GameObject * first, GameObject * second, Vector2D vector)
+Collision::Collision(GameObject * collider, Vector2D vector)
 {
-	firstCollider = first;
-	secondCollider = second;
+	this->collider = collider;
 	collisionVector = vector;
 }

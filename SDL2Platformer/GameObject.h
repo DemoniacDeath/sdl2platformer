@@ -22,7 +22,7 @@ public:
 	virtual void detectCollisions();
 	virtual void detectCollisions(std::vector<GameObject *> *);
 	virtual void handleEnterCollision(Collision);
-	virtual void handleExitCollision(Collision);
+	virtual void handleExitCollision(GameObject *);
 	virtual void handleCollision(Collision);
 	virtual void animate();
 	virtual void render(Vector2D, Vector2D, Size);

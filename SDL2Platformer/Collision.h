@@ -6,9 +6,8 @@ class GameObject;
 class Collision
 {
 public:
-	Collision(GameObject *, GameObject *, Vector2D);
-	GameObject * firstCollider;
-	GameObject * secondCollider;
+	Collision(GameObject *, Vector2D);
+	GameObject * collider;
 	Vector2D collisionVector;
 };
 

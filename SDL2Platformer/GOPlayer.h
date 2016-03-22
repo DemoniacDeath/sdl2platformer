@@ -15,7 +15,7 @@ public:
 	void handleEvent(SDL_Event *);
 	void handleKeyboard(const Uint8 *);
 	void handleEnterCollision(Collision);
-	void handleExitCollision(Collision);
+	void handleExitCollision(GameObject *);
 	void handleCollision(Collision);
 	void dealDamage(int);
 	void die();

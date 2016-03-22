@@ -17,7 +17,7 @@ public:
 	bool gravity = false;
 	bool still = true;
 	float gravityForce = 0.f;
-	std::set<Collision *> collisions;
+	std::set<GameObject *> colliders;
 protected:
 	GameObject * gameObject = NULL;
 };

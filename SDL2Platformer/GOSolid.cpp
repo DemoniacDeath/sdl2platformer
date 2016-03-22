@@ -8,46 +8,24 @@ GOSolid::GOSolid(GameContext * context, Rect frame) : GameObject(context, frame)
 
 void GOSolid::handleEnterCollision(Collision collision)
 {
-	GameObject * collider;
-	if (collision.firstCollider == this)
-	{
-		collider = collision.secondCollider;
-	}
-	else
-	{
-		collider = collision.firstCollider;
-	}
 	GOPlayer * player;
-	if (collider->physics->velocity.y > 5 && (player = dynamic_cast<GOPlayer *>(collider)))
+	if (collision.collider->physics->velocity.y > 5 && (player = dynamic_cast<GOPlayer *>(collision.collider)))
 	{
-		player->dealDamage((int)roundf(collider->physics->velocity.y * 10));
-		std::cout << "Ouch!" << '\n';
+		player->dealDamage((int)roundf(collision.collider->physics->velocity.y * 10));
 	}
 }
 
 void GOSolid::handleCollision(Collision collision)
 {
-	GameObject * collider;
-	Vector2D collisionArea;
-	collisionArea = collision.collisionVector;
-	if (collision.firstCollider == this)
+	if (abs(collision.collisionVector.x) < abs(collision.collisionVector.y))
 	{
-		collisionArea *= -1;
-		collider = collision.secondCollider;
+		collision.collider->frame.center.x += collision.collisionVector.x;
+		collision.collider->physics->velocity.x = 0;
 	}
 	else
 	{
-		collider = collision.firstCollider;
-	}
-	if (abs(collisionArea.x) < abs(collisionArea.y))
-	{
-		collider->frame.center.x -= collisionArea.x;
-		collider->physics->velocity.x = 0;
-	}
-	else
-	{
-		collider->frame.center.y -= collisionArea.y;
-		collider->physics->velocity.y = 0;
+		collision.collider->frame.center.y += collision.collisionVector.y;
+		collision.collider->physics->velocity.y = 0;
 	}
 }
 

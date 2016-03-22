@@ -40,17 +40,11 @@ void PhysicsState::detectCollision(PhysicsState * c)
 	float diffY1 = Y1 - y2;
 	float diffY2 = y1 - Y2;
 
-	Collision * collision = NULL;
-	std::set<Collision *>::const_iterator iterator;
-	for (iterator = collisions.begin(); iterator != collisions.end(); ++iterator)
-	{
-		if (((*iterator)->firstCollider == gameObject && (*iterator)->secondCollider == c->gameObject) ||
-			(*iterator)->secondCollider == gameObject && (*iterator)->firstCollider == c->gameObject)
-		{
-			collision = (*iterator);
-			break;
-		}
-	}
+	bool alreadyCollided = (
+		colliders.find(c->gameObject) != colliders.end()
+		||
+		c->colliders.find(gameObject) != c->colliders.end()
+		);
 	if (diffX1 > 0 &&
 		diffX2 < 0 &&
 		diffY1 > 0 &&
@@ -60,37 +54,31 @@ void PhysicsState::detectCollision(PhysicsState * c)
 			(abs(diffX1)<abs(diffX2) ? diffX1 : diffX2),
 			(abs(diffY1)<abs(diffY2) ? diffY1 : diffY2)
 			);
-		if (!collision)
+		if (!alreadyCollided)
 		{
-			collision = new Collision(gameObject, c->gameObject, overlapArea);
-			collisions.insert(collision);
-			c->collisions.insert(collision);
+			colliders.insert(c->gameObject);
+			c->colliders.insert(gameObject);
 
-			gameObject->handleEnterCollision(*collision);
-			c->gameObject->handleEnterCollision(*collision);
+			gameObject->handleEnterCollision(Collision(c->gameObject, overlapArea));
+			c->gameObject->handleEnterCollision(Collision(gameObject, overlapArea * -1));
 		}
-		else
-		{
-			collision->collisionVector = overlapArea;
-		}
-		gameObject->handleCollision(*collision);
-		c->gameObject->handleCollision(*collision);
+		gameObject->handleCollision(Collision(c->gameObject, overlapArea));
+		c->gameObject->handleCollision(Collision(gameObject, overlapArea * -1));
 	}
-	else if (collision)
+	else if (alreadyCollided)
 	{
-		collisions.erase(collision);
-		c->collisions.erase(collision);
-		gameObject->handleExitCollision(*collision);
-		c->gameObject->handleExitCollision(*collision);
+		colliders.erase(c->gameObject);
+		c->colliders.erase(gameObject);
+		gameObject->handleExitCollision(c->gameObject);
+		c->gameObject->handleExitCollision(gameObject);
 	}
 }
 
 void PhysicsState::free()
 {
-	//TODO: I have to find a way to delete collision from both colliders.
-	std::set <Collision*>::iterator deleteIterator = collisions.begin();
-	while (deleteIterator != collisions.end()) {
-		delete (*deleteIterator);
-		deleteIterator = collisions.erase(deleteIterator);
+	for (std::set<GameObject *>::const_iterator i = colliders.begin(); i != colliders.end(); ++i)
+	{
+		(*i)->physics->colliders.erase(gameObject);
 	}
+	colliders.clear();
 }

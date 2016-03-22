@@ -78,7 +78,7 @@ void GameObject::detectCollisions(std::vector<GameObject *> * allColliders)
 
 void GameObject::handleEnterCollision(Collision collision) {}
 
-void GameObject::handleExitCollision(Collision collision) {}
+void GameObject::handleExitCollision(GameObject * collider) {}
 
 void GameObject::handleCollision(Collision collision) {}
 
@@ -158,8 +158,8 @@ void GameObject::free()
 		std::vector<GameObject *>::const_iterator i = children.begin();
 		while (i != children.end())
 		{
-			//delete (*i);
-			(*i)->parent = NULL;
+			delete (*i);
+			//(*i)->parent = NULL;
 			i++;
 		}
 		children.clear();

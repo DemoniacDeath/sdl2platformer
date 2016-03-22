@@ -106,22 +106,17 @@ void GOPlayer::handleKeyboard(const Uint8 * state)
 
 void GOPlayer::handleEnterCollision(Collision collision)
 {
-	GameObject * collider;
-	if (collision.firstCollider == this)
-		collider = collision.secondCollider;
-	else
-		collider = collision.firstCollider;
-	if (GOConsumable * consumable = dynamic_cast<GOConsumable *>(collider))
+	if (GOConsumable * consumable = dynamic_cast<GOConsumable *>(collision.collider))
 	{
-		collider->removed = true;
+		collision.collider->removed = true;
 		speed += 0.01f;
 		jumpSpeed += 0.01f;
 	}
 }
 
-void GOPlayer::handleExitCollision(Collision collision)
+void GOPlayer::handleExitCollision(GameObject * collider)
 {
-	if (!physics->collisions.size())
+	if (!physics->colliders.size())
 	{
 		jumped = true;
 	}
@@ -129,15 +124,9 @@ void GOPlayer::handleExitCollision(Collision collision)
 
 void GOPlayer::handleCollision(Collision collision)
 {
-	Vector2D collisionArea;
-	collisionArea = collision.collisionVector;
-	if (collision.secondCollider == this)
+	if (abs(collision.collisionVector.x) > abs(collision.collisionVector.y))
 	{
-		collisionArea *= -1;
-	}
-	if (abs(collisionArea.x) > abs(collisionArea.y))
-	{
-		if (collisionArea.y > 0 && jumped && physics->gravity)
+		if (collision.collisionVector.y > 0 && jumped && physics->gravity)
 		{
 			jumped = false;
 		}
