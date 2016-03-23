@@ -164,7 +164,7 @@ void GameObject::free()
 		}
 		children.clear();
 	}
-	
+
 	context = NULL;
 }
 

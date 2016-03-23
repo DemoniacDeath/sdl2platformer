@@ -42,6 +42,8 @@ RenderObject * RenderObject::renderObjectFromFile(GameContext * context, const c
 RenderObject * RenderObject::renderObjectFromFileWithFrame(GameContext * context, const char * path, SDL_Rect frameSize)
 {
 	RenderObject * renderObject = RenderObject::renderObjectFromFile(context, path);
+	if (!renderObject)
+        return NULL;
 	renderObject->renderFrameSize = frameSize;
 	renderObject->fullRender = false;
 	return renderObject;

@@ -15,7 +15,7 @@ class GameObject
 public:
 	GameObject(GameContext *);
 	GameObject(GameContext *, Rect);
-	~GameObject();
+	virtual ~GameObject();
 	virtual void handleEvent(SDL_Event *);
 	virtual void handleKeyboard(const Uint8 *);
 	virtual void processPhysics();

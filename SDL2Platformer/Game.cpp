@@ -1,6 +1,7 @@
 #include "Game.h"
 
 #include <time.h>
+#include <stdlib.h>
 #include "RenderObject.h"
 #include "GOPlayer.h"
 #include "GOFrame.h"
@@ -19,6 +20,13 @@ bool Game::init()
 	{
 		printf("Warning: Linear texture filtering not enabled!");
 	}
+
+	int imgFlags = IMG_INIT_PNG;
+	if (!(IMG_Init(imgFlags) & imgFlags))
+    {
+        printf("SDL_image could not be initialized! SDL_image Error: %s\n", IMG_GetError());
+        return false;
+    }
 
 	GameSettings * settings = new GameSettings();
 	context = new GameContext(settings);
@@ -136,4 +144,5 @@ void Game::exit()
 	context->free();
 
 	SDL_Quit();
+	IMG_Quit();
 }

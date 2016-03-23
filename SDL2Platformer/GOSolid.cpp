@@ -17,7 +17,7 @@ void GOSolid::handleEnterCollision(Collision collision)
 
 void GOSolid::handleCollision(Collision collision)
 {
-	if (abs(collision.collisionVector.x) < abs(collision.collisionVector.y))
+	if (fabs(collision.collisionVector.x) < fabs(collision.collisionVector.y))
 	{
 		collision.collider->frame.center.x += collision.collisionVector.x;
 		collision.collider->physics->velocity.x = 0;
