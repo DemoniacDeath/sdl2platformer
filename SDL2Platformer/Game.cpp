@@ -28,6 +28,12 @@ bool Game::init()
         return false;
     }
 
+    if (TTF_Init() == -1)
+    {
+        printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
+        return false;
+    }
+
 	GameSettings * settings = new GameSettings();
 	context = new GameContext(settings);
 	return context != NULL;
@@ -56,13 +62,12 @@ void Game::run()
 		player->physics->gravityForce = 0.1f;
 		player->addChild(context->world->camera);
 
-		context->world->addChild(player);
-
 		context->world->addChild(new GOFrame(context, Rect( 0,0,context->world->frame.size.width,context->world->frame.size.height ), 10));
 
 		GameObject * object;
 		srand((unsigned int)time(NULL));
-		int count = 150;
+		int count = 200;
+		int powerCount = 100;
 		int x = int(context->world->frame.size.width / 10 - 2);
 		int y = int(context->world->frame.size.height / 10 - 2);
 		int rndx, rndy;
@@ -88,19 +93,55 @@ void Game::run()
 			takenx[i] = rndx;
 			takeny[i] = rndy;
 
-			if (rand() % 2)
+			if (powerCount)
+			{
+				object = new GOConsumable(context, Rect(float(context->world->frame.size.width / 2) - 15 - rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10));
+				object->renderObject = RenderObject::renderObjectFromColor(context, Color(0x00, 0xFF, 0x00, 0x80));
+				context->world->addChild(object);
+			    powerCount--;
+			}
+			else
 			{
 				object = new GOSolid(context, Rect(float(context->world->frame.size.width / 2) - 15 - rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10));
 				object->renderObject = RenderObject::renderObjectFromFile(context, "img/brick.png");
 				context->world->addChild(object);
 			}
-			else
-			{
-				object = new GOConsumable(context, Rect(float(context->world->frame.size.width / 2) - 15 - rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10));
-				object->renderObject = RenderObject::renderObjectFromColor(context, Color(0x00, 0xFF, 0x00, 0x80));
-				context->world->addChild(object);
-			}
 		}
+
+		context->world->addChild(player);
+
+		context->ui = new GOUI(context, {{0.0f, 0.0f}, context->world->camera->originalSize});
+
+        context->ui->deathText = new GOUIText(context, {0, 0, 100, 10});
+        context->ui->deathText->setText("You died! Game Over!");
+        context->ui->deathText->setFont("fonts/Scratch_.ttf", 28);
+        context->ui->deathText->setColor({0xFF, 0x00, 0x00});
+        context->ui->deathText->visible = false;
+        context->ui->addChild(context->ui->deathText);
+
+        context->ui->winText = new GOUIText(context, {0, 0, 100, 10});
+        context->ui->winText->setText("Congratulations! You won!");
+        context->ui->winText->setFont("fonts/Scratch_.ttf", 28);
+        context->ui->winText->setColor({0x00, 0xFF, 0x00});
+        context->ui->winText->visible = false;
+        context->ui->addChild(context->ui->winText);
+
+        context->ui->healthBarHolder = new GOUIElement(context, {-context->world->camera->originalSize.width/2+16, -context->world->camera->originalSize.height/2+2.5f, 30, 3});
+        context->ui->healthBarHolder->renderObject = RenderObject::renderObjectFromColor(context, {0x00, 0x00, 0x00, 0xFF});
+        context->ui->addChild(context->ui->healthBarHolder);
+
+        context->ui->healthBar = new GOUIBar(context, {-context->world->camera->originalSize.width/2+16, -context->world->camera->originalSize.height/2+2.5f, 29, 2});
+        context->ui->healthBar->renderObject = RenderObject::renderObjectFromColor(context, {0xFF, 0x00, 0x00, 0xFF});
+        context->ui->addChild(context->ui->healthBar);
+
+        context->ui->powerBarHolder = new GOUIElement(context, {context->world->camera->originalSize.width/2-16, -context->world->camera->originalSize.height/2+2.5f, 30, 3});
+        context->ui->powerBarHolder->renderObject = RenderObject::renderObjectFromColor(context, {0x00, 0x00, 0x00, 0xFF});
+        context->ui->addChild(context->ui->powerBarHolder);
+
+        context->ui->powerBar = new GOUIBar(context, {context->world->camera->originalSize.width/2-16, -context->world->camera->originalSize.height/2+2.5f, 29, 2});
+        context->ui->powerBar->renderObject = RenderObject::renderObjectFromColor(context, {0x00, 0xFF, 0x00, 0xFF});
+        context->ui->powerBar->setValue(0);
+        context->ui->addChild(context->ui->powerBar);
 
 		object = NULL;
 		player = NULL;
@@ -131,6 +172,7 @@ void Game::run()
 			SDL_RenderClear(context->renderer);
 
 			context->world->render();
+			context->ui->render();
 
 			//Update screen
 			SDL_RenderPresent(context->renderer);
@@ -145,4 +187,5 @@ void Game::exit()
 
 	SDL_Quit();
 	IMG_Quit();
+	TTF_Quit();
 }

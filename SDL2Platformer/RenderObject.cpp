@@ -8,6 +8,17 @@ RenderObject::RenderObject(GameContext * context, SDL_Texture * texture)
 	this->texture = texture;
 }
 
+RenderObject * RenderObject::renderObjectFromSurface(GameContext * context, SDL_Surface * surface)
+{
+	SDL_Texture * texture = NULL;
+	texture = SDL_CreateTextureFromSurface(context->renderer, surface);
+	if (texture == NULL)
+	{
+		printf("Unable to create texture from surface! SDL Error: %s\n", SDL_GetError());
+		return NULL;
+	}
+	return new RenderObject(context, texture);
+}
 
 RenderObject * RenderObject::renderObjectFromColor(GameContext * context, Color color)
 {

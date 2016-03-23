@@ -1,39 +1,48 @@
-#pragma once
+#ifndef GOPLAYER_H
+#define GOPLAYER_H
+
 #include <SDL2/SDL.h>
 #include "GameObject.h"
 #include "Rect.h"
 #include "Collision.h"
 #include "Animation.h"
+#include "GOCamera.h"
 
 class GameContext;
 
-class GOPlayer :
-	public GameObject
+class GOPlayer : public GameObject
 {
-public:
-	GOPlayer(GameContext *, Rect);
-	void handleEvent(SDL_Event *);
-	void handleKeyboard(const Uint8 *);
-	void handleEnterCollision(Collision);
-	void handleExitCollision(GameObject *);
-	void handleCollision(Collision);
-	void dealDamage(int);
-	void die();
-	void free();
+    public:
+        GOPlayer(GameContext *, Rect);
+        void handleEvent(SDL_Event *);
+        void handleKeyboard(const Uint8 *);
+        void handleEnterCollision(Collision);
+        void handleExitCollision(GameObject *);
+        void handleCollision(Collision);
+        void dealDamage(int);
+        void die();
+        void win();
+        void free();
 
-	float speed = 0.0f;
-	float jumpSpeed = 0.0f;
-	bool jumped = false;
-	Size originalSize;
-	bool crouched = false;
-	int health;
+        float speed = 0.0f;
+        float jumpSpeed = 0.0f;
+        int power = 0;
+        bool jumped = false;
+        Size originalSize;
+        bool crouched = false;
+        int health;
+        bool dead = false;
+        bool won = false;
 
-	Animation * idleAnimation = NULL;
-	Animation * moveAnimation = NULL;
-	Animation * jumpAnimation = NULL;
-	Animation * crouchAnimation = NULL;
-	Animation * crouchMoveAnimation = NULL;
-protected:
-	void setCrouched(bool);
+        Animation * idleAnimation = NULL;
+        Animation * moveAnimation = NULL;
+        Animation * jumpAnimation = NULL;
+        Animation * crouchAnimation = NULL;
+        Animation * crouchMoveAnimation = NULL;
+
+        GOCamera * camera = NULL;
+    protected:
+        void setCrouched(bool);
 };
 
+#endif // GOPLAYER_H

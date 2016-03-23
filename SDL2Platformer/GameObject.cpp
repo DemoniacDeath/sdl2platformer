@@ -96,7 +96,7 @@ void GameObject::animate()
 
 void GameObject::render(Vector2D localBasis, Vector2D cameraPosition, Size cameraSize)
 {
-	if (renderObject)
+	if (visible && renderObject)
 	{
 		Vector2D globalPosition = frame.center;
 		globalPosition += localBasis;
