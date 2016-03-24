@@ -146,10 +146,11 @@ void Game::run()
 		object = NULL;
 		player = NULL;
 
+
+		contextLock = SDL_CreateSemaphore(1);
+        renderThread = SDL_CreateThread(&Game::renderThreadProcess, "RenderThread", this);
 		while (!context->quit)
 		{
-			context->world->clean();
-
 			//Handle events on queue
 			while (SDL_PollEvent(&e) != 0)
 			{
@@ -162,21 +163,12 @@ void Game::run()
 				context->world->handleEvent(&e);
 			}
 
+            SDL_SemWait(contextLock);
 			context->world->handleKeyboard(SDL_GetKeyboardState(NULL));
-			context->world->processPhysics();
-			context->world->detectCollisions();
-			context->world->animate();
-
-			//Clear screen
-			SDL_SetRenderDrawColor(context->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-			SDL_RenderClear(context->renderer);
-
-			context->world->render();
-			context->ui->render();
-
-			//Update screen
-			SDL_RenderPresent(context->renderer);
+			SDL_SemPost(contextLock);
 		}
+        SDL_WaitThread(renderThread, NULL);
+        SDL_DestroySemaphore(contextLock);
 	}
 	exit();
 }
@@ -188,4 +180,33 @@ void Game::exit()
 	SDL_Quit();
 	IMG_Quit();
 	TTF_Quit();
+}
+
+int Game::renderThreadProcess(void * _game)
+{
+    Game * game = (Game *)_game;
+    GameContext * context = game->context;
+    SDL_sem * contextLock = game->contextLock;
+
+    while (!context->quit)
+    {
+        SDL_SemWait(contextLock);
+        context->world->clean();
+        context->world->processPhysics();
+        context->world->detectCollisions();
+        context->world->animate();
+
+        //Clear screen
+        SDL_SetRenderDrawColor(context->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+        SDL_RenderClear(context->renderer);
+
+        context->world->render();
+        context->ui->render();
+
+        //Update screen
+        SDL_RenderPresent(context->renderer);
+        SDL_SemPost(contextLock);
+    }
+
+    return 0;
 }

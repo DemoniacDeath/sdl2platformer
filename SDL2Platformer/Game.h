@@ -14,8 +14,10 @@ class Game
     private:
         bool init();
         void exit();
-        bool quit = false;
+        static int renderThreadProcess(void *);
         GameContext * context = NULL;
+        SDL_sem * contextLock = NULL;
+        SDL_Thread * renderThread = NULL;
 };
 
 #endif // GAME_H
