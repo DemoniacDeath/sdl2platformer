@@ -57,7 +57,7 @@ add_executable(sdl2platformer
         SDL2Platformer/Vector2D.cpp
         SDL2Platformer/Vector2D.h)
 
-target_link_libraries(sdl2platformer SDL2 SDL2_image SDL2_ttf)
+target_link_libraries(sdl2platformer ${SDL2_LIBRARY} ${SDL2MAIN_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2TTF_LIBRARY})
 
 FILE(COPY
         SDL2Platformer/img/brick.png

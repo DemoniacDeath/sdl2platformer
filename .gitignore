@@ -142,7 +142,6 @@ publish/
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
-## TODO: Comment the next line if you want to checkin your
 ## web deploy settings but do note that will include unencrypted
 ## passwords
 #*.pubxml
@@ -223,3 +222,5 @@ ModelManifest.xml
 *.opendb
 nbproject
 .idea
+cmake-build-debug
+cmake-build-release
