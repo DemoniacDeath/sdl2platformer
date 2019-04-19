@@ -3,7 +3,7 @@
 #include "GameContext.h"
 #include "GameObject.h"
 
-RenderObject::RenderObject(GameContext * context, SDL_Texture * texture)
+RenderObject::RenderObject(SDL_Texture *texture)
 {
 	this->texture = texture;
 }
@@ -17,7 +17,7 @@ RenderObject * RenderObject::renderObjectFromSurface(GameContext * context, SDL_
 		printf("Unable to create texture from surface! SDL Error: %s\n", SDL_GetError());
 		return NULL;
 	}
-	return new RenderObject(context, texture);
+	return new RenderObject(texture);
 }
 
 RenderObject * RenderObject::renderObjectFromColor(GameContext * context, Color color)
@@ -27,7 +27,7 @@ RenderObject * RenderObject::renderObjectFromColor(GameContext * context, Color 
 	SDL_SetRenderDrawColor(context->renderer, color.r, color.g, color.b, color.a);
 	SDL_RenderClear(context->renderer);
 	SDL_SetRenderTarget(context->renderer, NULL);
-	return new RenderObject(context, texture);
+	return new RenderObject(texture);
 }
 
 RenderObject * RenderObject::renderObjectFromFile(GameContext * context, const char * path)
@@ -47,7 +47,7 @@ RenderObject * RenderObject::renderObjectFromFile(GameContext * context, const c
 		return NULL;
 	}
 	SDL_FreeSurface(surface);
-	return new RenderObject(context, texture);
+	return new RenderObject(texture);
 }
 
 RenderObject * RenderObject::renderObjectFromFileWithFrame(GameContext * context, const char * path, SDL_Rect frameSize)

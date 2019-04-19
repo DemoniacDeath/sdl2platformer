@@ -5,12 +5,12 @@ GOUIBar::GOUIBar(GameContext * context, Rect frame) : GOUIElement(context, frame
     originalFrame = frame;
 }
 
-void GOUIBar::setValue(float value)
+void GOUIBar::setValue(float newValue)
 {
-    if (value > 100) value = 100;
-    if (value < 0) value = 0;
+    if (newValue > 100) newValue = 100;
+    if (newValue < 0) newValue = 0;
 
-    this->value = value;
+    this->value = newValue;
 
-    frame = Rect({originalFrame.center.x+originalFrame.size.width*((value - 100) / 200), originalFrame.center.y}, {originalFrame.size.width/100*value, originalFrame.size.height});
+    frame = Rect({originalFrame.center.x+originalFrame.size.width*((newValue - 100) / 200), originalFrame.center.y}, {originalFrame.size.width/100*newValue, originalFrame.size.height});
 }

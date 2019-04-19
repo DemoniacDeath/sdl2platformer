@@ -13,7 +13,6 @@ class GOUIText : public GOUIElement
 
         void setFont(const char *, int);
         void setText(std::string);
-        void setSize(Uint8);
         void setColor(SDL_Color);
         void generate();
 

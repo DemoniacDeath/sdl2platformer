@@ -40,8 +40,7 @@ class GOPlayer : public GameObject
         Animation * crouchAnimation = NULL;
         Animation * crouchMoveAnimation = NULL;
 
-        GOCamera * camera = NULL;
-    protected:
+protected:
         void setCrouched(bool);
 };
 

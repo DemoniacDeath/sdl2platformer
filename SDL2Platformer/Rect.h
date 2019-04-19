@@ -11,8 +11,8 @@ class Rect
         Rect();
         Rect(float, float, float, float);
         Rect(Vector2D, Size);
-        SDL_Rect SDLRect();
-        Vector2D center;
+
+    Vector2D center;
         Size size;
 };
 

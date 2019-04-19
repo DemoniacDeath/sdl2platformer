@@ -34,9 +34,9 @@ bool Game::init()
         return false;
     }
 
-	GameSettings * settings = new GameSettings();
+	auto * settings = new GameSettings();
 	context = new GameContext(settings);
-	return context != NULL;
+	return context != nullptr;
 }
 
 void Game::run()
@@ -65,24 +65,24 @@ void Game::run()
 		context->world->addChild(new GOFrame(context, Rect( 0,0,context->world->frame.size.width,context->world->frame.size.height ), 10));
 
 		GameObject * object;
-		srand((unsigned int)time(NULL));
+		srand((unsigned int)time(nullptr));
 		int count = 200;
 		int powerCount = 100;
 		int x = int(context->world->frame.size.width / 10 - 2);
 		int y = int(context->world->frame.size.height / 10 - 2);
-		int rndx, rndy;
-		int * takenx = new int[count];
-		int * takeny = new int[count];
+		int randomX, randomY;
+		int * takenXs = new int[count];
+		int * takenYs = new int[count];
 		for (int i = 0; i < count; i++)
 		{
 			bool taken;
 			do {
 				taken = false;
-				rndx = rand() % x;
-				rndy = rand() % y;
+				randomX = rand() % x;
+				randomY = rand() % y;
 				for (int j = 0; j <= i; j++)
 				{
-					if (rndx == takenx[j] && rndy == takeny[j])
+					if (randomX == takenXs[j] && randomY == takenYs[j])
 					{
 						taken = true;
 						break;
@@ -90,19 +90,19 @@ void Game::run()
 				}
 			} while (taken);
 
-			takenx[i] = rndx;
-			takeny[i] = rndy;
+			takenXs[i] = randomX;
+			takenYs[i] = randomY;
 
 			if (powerCount)
 			{
-				object = new GOConsumable(context, Rect(float(context->world->frame.size.width / 2) - 15 - rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10));
+				object = new GOConsumable(context, Rect(float(context->world->frame.size.width / 2) - 15 - randomX * 10, float(context->world->frame.size.height / 2) - 15 - randomY * 10, 10, 10));
 				object->renderObject = RenderObject::renderObjectFromColor(context, Color(0x00, 0xFF, 0x00, 0x80));
 				context->world->addChild(object);
 			    powerCount--;
 			}
 			else
 			{
-				object = new GOSolid(context, Rect(float(context->world->frame.size.width / 2) - 15 - rndx * 10, float(context->world->frame.size.height / 2) - 15 - rndy * 10, 10, 10));
+				object = new GOSolid(context, Rect(float(context->world->frame.size.width / 2) - 15 - randomX * 10, float(context->world->frame.size.height / 2) - 15 - randomY * 10, 10, 10));
 				object->renderObject = RenderObject::renderObjectFromFile(context, "img/brick.png");
 				context->world->addChild(object);
 			}
@@ -143,14 +143,11 @@ void Game::run()
         context->ui->powerBar->setValue(0);
         context->ui->addChild(context->ui->powerBar);
 
-		object = NULL;
-		player = NULL;
-
-
-		contextLock = SDL_CreateSemaphore(1);
+        contextLock = SDL_CreateSemaphore(1);
         renderThread = SDL_CreateThread(&Game::renderThreadProcess, "RenderThread", this);
 		while (!context->quit)
 		{
+		    SDL_Delay(10);
 			//Handle events on queue
 			while (SDL_PollEvent(&e) != 0)
 			{
@@ -164,10 +161,10 @@ void Game::run()
 			}
 
             SDL_SemWait(contextLock);
-			context->world->handleKeyboard(SDL_GetKeyboardState(NULL));
+			context->world->handleKeyboard(SDL_GetKeyboardState(nullptr));
 			SDL_SemPost(contextLock);
 		}
-        SDL_WaitThread(renderThread, NULL);
+        SDL_WaitThread(renderThread, nullptr);
         SDL_DestroySemaphore(contextLock);
 	}
 	exit();
@@ -190,6 +187,7 @@ int Game::renderThreadProcess(void * _game)
 
     while (!context->quit)
     {
+        SDL_Delay(10);
         SDL_SemWait(contextLock);
         context->world->clean();
         context->world->processPhysics();

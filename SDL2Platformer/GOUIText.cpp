@@ -2,7 +2,7 @@
 
 GOUIText::GOUIText(GameContext * context, Rect frame) : GOUIElement::GOUIElement(context, frame)
 {
-};
+}
 
 void GOUIText::setFont(const char * path, int size)
 {
@@ -10,15 +10,15 @@ void GOUIText::setFont(const char * path, int size)
     generate();
 }
 
-void GOUIText::setText(std::string text)
+void GOUIText::setText(std::string newText)
 {
-    this->text = text;
+    this->text = newText;
     generate();
 }
 
-void GOUIText::setColor(SDL_Color color)
+void GOUIText::setColor(SDL_Color newColor)
 {
-    this->color = color;
+    this->color = newColor;
     generate();
 }
 
@@ -31,3 +31,4 @@ void GOUIText::generate()
         SDL_FreeSurface(surface);
     }
 }
+

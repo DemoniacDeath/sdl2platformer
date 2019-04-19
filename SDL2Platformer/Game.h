@@ -15,9 +15,9 @@ class Game
         bool init();
         void exit();
         static int renderThreadProcess(void *);
-        GameContext * context = NULL;
-        SDL_sem * contextLock = NULL;
-        SDL_Thread * renderThread = NULL;
+        GameContext * context = nullptr;
+        SDL_sem * contextLock = nullptr;
+        SDL_Thread * renderThread = nullptr;
 };
 
 #endif // GAME_H

@@ -11,11 +11,6 @@ Vector2D::Vector2D(float x, float y)
 	this->y = y;
 }
 
-float Vector2D::length()
-{
-	return sqrtf(x*x + y*y);
-}
-
 Vector2D Vector2D::operator*(float s)
 {
 	return Vector2D(x*s, y*s);

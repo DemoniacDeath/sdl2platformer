@@ -4,11 +4,6 @@
 #include "Animation.h"
 #include "GameContext.h"
 
-Animation::Animation(std::vector <RenderObject *> frames, Uint32 speed) : Animation::Animation(speed)
-{
-	this->frames = std::move(frames);
-}
-
 Animation::Animation(Uint32 speed)
 {
 	this->speed = speed;
@@ -19,14 +14,6 @@ Animation * Animation::animationWithSingleRenderObject(RenderObject * renderObje
 {
 	auto * animation = new Animation(1);
 	animation->addFrame(renderObject);
-	return animation;
-}
-
-Animation * Animation::animationWithSpeedAndColor(Uint32 speed, GameContext * context, Color color)
-{
-	auto * animation = new Animation(speed);
-	animation->addFrame(RenderObject::renderObjectFromColor(context, color));
-	animation->addFrame(RenderObject::renderObjectFromColor(context, Color(0x00, 0x00, 0x00, 0xFF)));
 	return animation;
 }
 

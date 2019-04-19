@@ -23,7 +23,7 @@ class GameObject
         virtual void processPhysics();
         virtual void detectCollisions();
         virtual void detectCollisions(std::vector<GameObject *> *);
-        virtual void handleEnterCollision(Collision);
+        virtual void handleEnterCollision(Collision __unused);
         virtual void handleExitCollision(GameObject *);
         virtual void handleCollision(Collision);
         virtual void animate();

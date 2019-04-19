@@ -18,12 +18,3 @@ Rect::Rect(Vector2D center, Size size)
 	this->size = size;
 }
 
-SDL_Rect Rect::SDLRect()
-{
-	SDL_Rect rect;
-	rect.x = int(center.x - size.width / 2);
-	rect.y = int(center.y - size.height / 2);
-	rect.w = int(size.width);
-	rect.h = int(size.height);
-	return rect;
-}

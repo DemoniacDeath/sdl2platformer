@@ -11,10 +11,8 @@ class GameContext;
 class Animation
 {
     public:
-        Animation(std::vector <RenderObject *>, Uint32);
-        Animation(Uint32);
+        explicit Animation(Uint32);
         static Animation * animationWithSingleRenderObject(RenderObject *);
-        static Animation * animationWithSpeedAndColor(Uint32, GameContext *, Color);
         static Animation * animationWithSpeedAndTextureFile(Uint32, GameContext *, const char *, int, int, Uint16);
         void addFrame(RenderObject *);
         void turnLeft(bool);

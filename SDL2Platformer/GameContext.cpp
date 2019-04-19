@@ -11,14 +11,14 @@ GameContext::GameContext(GameSettings * settings)
 	}
 
 	window = SDL_CreateWindow(settings->name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, settings->windowWidth, settings->windowHeight, SDL_WINDOW_SHOWN);
-	if (window == NULL)
+	if (window == nullptr)
 	{
 		printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
 		return;
 	}
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if (renderer == NULL)
+	if (renderer == nullptr)
 	{
 		printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
 		return;
@@ -33,8 +33,8 @@ void GameContext::free()
 	SDL_DestroyWindow(window);
 	delete settings;
 	delete world;
-	settings = NULL;
-	window = NULL;
-	renderer = NULL;
-	world = NULL;
+	settings = nullptr;
+	window = nullptr;
+	renderer = nullptr;
+	world = nullptr;
 }

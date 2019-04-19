@@ -59,7 +59,7 @@ void GameObject::detectCollisions()
 	detectCollisions(allColliders);
 	for (Uint32 i = 0, size = allColliders->size(); i < size; i++)
 	{
-		for (Uint32 j = i + 1, size = allColliders->size(); j < size; j++)
+		for (Uint32 j = i + 1; j < size; j++)
 		{
 			(*allColliders)[i]->physics->detectCollision((*allColliders)[j]->physics);
 		}
@@ -76,11 +76,11 @@ void GameObject::detectCollisions(std::vector<GameObject *> * allColliders)
 	}
 }
 
-void GameObject::handleEnterCollision(Collision collision) {}
+void GameObject::handleEnterCollision(__attribute__((unused)) Collision collision) {}
 
-void GameObject::handleExitCollision(GameObject * collider) {}
+void GameObject::handleExitCollision(__attribute__((unused)) GameObject * collider) {}
 
-void GameObject::handleCollision(Collision collision) {}
+void GameObject::handleCollision(__attribute__((unused)) Collision collision) {}
 
 void GameObject::animate()
 {

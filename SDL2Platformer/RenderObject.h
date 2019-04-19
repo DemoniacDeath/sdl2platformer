@@ -12,7 +12,7 @@ class GameObject;
 class RenderObject
 {
     public:
-        RenderObject(GameContext *, SDL_Texture *);
+        RenderObject(SDL_Texture *texture);
         static RenderObject * renderObjectFromSurface(GameContext *, SDL_Surface *);
         static RenderObject * renderObjectFromColor(GameContext *, Color);
         static RenderObject * renderObjectFromFile(GameContext *, const char *);

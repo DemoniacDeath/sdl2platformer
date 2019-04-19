@@ -126,7 +126,7 @@ void GOPlayer::handleEnterCollision(Collision collision)
 	}
 }
 
-void GOPlayer::handleExitCollision(GameObject * collider)
+void GOPlayer::handleExitCollision(__attribute__((unused)) GameObject * collider)
 {
 	if (!physics->colliders.size())
 	{
@@ -188,15 +188,15 @@ void GOPlayer::free()
 	GameObject::free();
 }
 
-void GOPlayer::setCrouched(bool crouched)
+void GOPlayer::setCrouched(bool value)
 {
-	if (crouched && !this->crouched)
+	if (value && !this->crouched)
 	{
 		this->crouched = true;
 		frame.size.height = originalSize.height / 2;
 		frame.center.y += frame.size.height / 2;
 	}
-	else if (!crouched && this->crouched)
+	else if (!value && this->crouched)
 	{
 		this->crouched = false;
 		frame.center.y -= frame.size.height / 2;
