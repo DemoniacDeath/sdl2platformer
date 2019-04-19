@@ -222,3 +222,4 @@ ModelManifest.xml
 *.sln
 *.opendb
 nbproject
+.idea
