@@ -1,10 +1,12 @@
+#include <utility>
+
 #include <SDL2/SDL_timer.h>
 #include "Animation.h"
 #include "GameContext.h"
 
 Animation::Animation(std::vector <RenderObject *> frames, Uint32 speed) : Animation::Animation(speed)
 {
-	this->frames = frames;
+	this->frames = std::move(frames);
 }
 
 Animation::Animation(Uint32 speed)
@@ -15,14 +17,14 @@ Animation::Animation(Uint32 speed)
 
 Animation * Animation::animationWithSingleRenderObject(RenderObject * renderObject)
 {
-	Animation * animation = new Animation(1);
+	auto * animation = new Animation(1);
 	animation->addFrame(renderObject);
 	return animation;
 }
 
 Animation * Animation::animationWithSpeedAndColor(Uint32 speed, GameContext * context, Color color)
 {
-	Animation * animation = new Animation(speed);
+	auto * animation = new Animation(speed);
 	animation->addFrame(RenderObject::renderObjectFromColor(context, color));
 	animation->addFrame(RenderObject::renderObjectFromColor(context, Color(0x00, 0x00, 0x00, 0xFF)));
 	return animation;
@@ -30,7 +32,7 @@ Animation * Animation::animationWithSpeedAndColor(Uint32 speed, GameContext * co
 
 Animation * Animation::animationWithSpeedAndTextureFile(Uint32 speed, GameContext * context, const char * filePath, int width, int height, Uint16 frames)
 {
-	Animation * animation = new Animation(speed);
+	auto * animation = new Animation(speed);
 	SDL_Rect rect;
 	rect.w = width;
 	rect.h = height;
@@ -40,7 +42,7 @@ Animation * Animation::animationWithSpeedAndTextureFile(Uint32 speed, GameContex
 	animation->addFrame(renderObject);
 	for (Uint16 i = 1; i < frames; i++)
 	{
-		RenderObject * newRenderObject = new RenderObject(*renderObject);
+		auto * newRenderObject = new RenderObject(*renderObject);
 		rect.y = i*rect.h;
 		newRenderObject->renderFrameSize = rect;
 		animation->addFrame(newRenderObject);
@@ -68,9 +70,9 @@ void Animation::turnLeft(bool toTheLeft)
 	}
 	else
 		return;
-	for (Uint32 i = 0, size = this->frames.size(); i < size; i++)
+	for (auto & frame : this->frames)
 	{
-		this->frames[i]->renderFlip = flip;
+		frame->renderFlip = flip;
 	}
 }
 
@@ -85,8 +87,8 @@ RenderObject * Animation::animate()
 
 void Animation::free()
 {
-	for (Uint32 i = 0, size = this->frames.size(); i < size; i++)
+	for (auto & frame : this->frames)
 	{
-		this->frames[i]->free();
+		frame->free();
 	}
 }
