@@ -5,23 +5,28 @@
 #include "Color.h"
 #include "Vector2D.h"
 #include "Size.h"
+#include "GameSettings.h"
 
-class GameContext;
-class GameObject;
+class RenderObject {
+public:
+    RenderObject(SDL_Texture *texture);
 
-class RenderObject
-{
-    public:
-        RenderObject(SDL_Texture *texture);
-        static RenderObject * renderObjectFromSurface(GameContext *, SDL_Surface *);
-        static RenderObject * renderObjectFromColor(GameContext *, Color);
-        static RenderObject * renderObjectFromFile(GameContext *, const char *);
-        static RenderObject * renderObjectFromFileWithFrame(GameContext *, const char *, SDL_Rect);
-        void render(GameContext *, Vector2D, Size, Vector2D, Size);
-        void free();
-        SDL_Texture * texture = NULL;
-        SDL_Rect renderFrameSize;
-        SDL_RendererFlip renderFlip = SDL_FLIP_NONE;
-        bool fullRender = true;
+    static RenderObject *renderObjectFromSurface(SDL_Renderer *, SDL_Surface *);
+
+    static RenderObject *renderObjectFromColor(SDL_Renderer *, Color);
+
+    static RenderObject *renderObjectFromFile(SDL_Renderer *, const char *);
+
+    static RenderObject *renderObjectFromFileWithFrame(SDL_Renderer *, const char *, SDL_Rect);
+
+    void render(SDL_Renderer *, GameSettings *, Vector2D, Size, Vector2D, Size);
+
+    void free();
+
+    SDL_Texture *texture = NULL;
+    SDL_Rect renderFrameSize;
+    SDL_RendererFlip renderFlip = SDL_FLIP_NONE;
+    bool fullRender = true;
 };
+
 #endif // RENDEROBJECT_H

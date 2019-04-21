@@ -5,15 +5,16 @@
 #include "Vector2D.h"
 #include "Size.h"
 
-class Rect
-{
-    public:
-        Rect();
-        Rect(float, float, float, float);
-        Rect(Vector2D, Size);
+class Rect {
+public:
+    Rect();
+
+    Rect(float, float, float, float);
+
+    Rect(Vector2D, Size);
 
     Vector2D center;
-        Size size;
+    Size size;
 };
 
 #endif // RECT_H

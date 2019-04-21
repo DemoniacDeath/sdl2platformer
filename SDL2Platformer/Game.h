@@ -7,17 +7,16 @@
 #include <stdio.h>
 #include "GameContext.h"
 
-class Game
-{
-    public:
-        void run();
-    private:
-        bool init();
-        void exit();
-        static int renderThreadProcess(void *);
-        GameContext * context = nullptr;
-        SDL_sem * contextLock = nullptr;
-        SDL_Thread * renderThread = nullptr;
+class Game {
+public:
+    void run();
+
+private:
+    bool init();
+
+    void exit();
+
+    GameContext *context = nullptr;
 };
 
 #endif // GAME_H

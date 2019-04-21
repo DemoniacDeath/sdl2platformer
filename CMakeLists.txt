@@ -35,12 +35,8 @@ add_executable(sdl2platformer
         SDL2Platformer/GOPlayer.h
         SDL2Platformer/GOSolid.cpp
         SDL2Platformer/GOSolid.h
-        SDL2Platformer/GOUI.cpp
-        SDL2Platformer/GOUI.h
         SDL2Platformer/GOUIBar.cpp
         SDL2Platformer/GOUIBar.h
-        SDL2Platformer/GOUIElement.cpp
-        SDL2Platformer/GOUIElement.h
         SDL2Platformer/GOUIText.cpp
         SDL2Platformer/GOUIText.h
         SDL2Platformer/GOWorld.cpp

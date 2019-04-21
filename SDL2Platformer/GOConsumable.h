@@ -5,10 +5,9 @@
 
 class GameContext;
 
-class GOConsumable : public GameObject
-{
-    public:
-        GOConsumable(GameContext *, Rect);
+class GOConsumable : public GameObject {
+public:
+    GOConsumable(GameContext *, Rect);
 };
 
 #endif // GOCONSUMABLE_H

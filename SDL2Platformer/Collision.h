@@ -5,12 +5,12 @@
 
 class GameObject;
 
-class Collision
-{
-    public:
-        Collision(GameObject *, Vector2D);
-        GameObject * collider;
-        Vector2D collisionVector;
+class Collision {
+public:
+    Collision(GameObject *, Vector2D);
+
+    GameObject *collider;
+    Vector2D collisionVector;
 };
 
 #endif // COLLISION_H

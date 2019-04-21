@@ -1,18 +1,17 @@
 #ifndef GOUIBAR_H
 #define GOUIBAR_H
 
-#include "GOUIElement.h"
 #include "Rect.h"
+#include "GameObject.h"
 
-class GOUIBar : public GOUIElement
-{
-    public:
-        GOUIBar(GameContext *, Rect);
-        void setValue(float);
+class GOUIBar : public GameObject {
+public:
+    GOUIBar(GameContext *, Rect);
 
-    protected:
-        float value = 100.f;
-        Rect originalFrame;
+    void setValue(float);
+
+protected:
+    Rect originalFrame;
 
 };
 
