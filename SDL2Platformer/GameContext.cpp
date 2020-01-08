@@ -1,36 +1,33 @@
 #include <SDL2/SDL_image.h>
+#include <stdexcept>
 #include "GameContext.h"
 
-GameContext::GameContext(GameSettings *settings) {
-    this->settings = settings;
-    if (!settings) {
-        printf("Could not load game settings.");
-        return;
+GameContext::GameContext(GameSettings *s) {
+    if (!s) {
+        throw std::runtime_error("Could not load game settings.");
     }
 
-    window = SDL_CreateWindow(settings->name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, settings->windowWidth,
+    settings = s;
+
+    window = SDL_CreateWindow(settings->name.data(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, settings->windowWidth,
                               settings->windowHeight, SDL_WINDOW_SHOWN);
     if (window == nullptr) {
-        printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
-        return;
+        throw std::runtime_error("Window could not be created! SDL Error: " + std::string(SDL_GetError()));
     }
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (renderer == nullptr) {
-        printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
-        return;
+        throw std::runtime_error("Renderer could not be created! SDL Error: " + std::string(SDL_GetError()));
     }
+
     //Initialize renderer color
     SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 }
 
-void GameContext::free() {
+GameContext::~GameContext() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    delete settings;
+    delete ui;
     delete world;
-    settings = nullptr;
-    window = nullptr;
-    renderer = nullptr;
-    world = nullptr;
+    delete settings;
 }

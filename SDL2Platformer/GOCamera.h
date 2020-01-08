@@ -5,9 +5,9 @@
 
 class GOCamera : public GameObject {
 public:
-    GOCamera(GameContext *, Rect);
+    GOCamera(const GameContext&, Rect);
 
-    void handleKeyboard(const Uint8 *);
+    void handleKeyboard(const Uint8 *) override;
 
     Size originalSize;
 };

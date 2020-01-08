@@ -2,7 +2,7 @@
 #define VECTOR2D_H
 
 #include <SDL2/SDL.h>
-#include <math.h>
+#include <cmath>
 
 class Vector2D {
 public:

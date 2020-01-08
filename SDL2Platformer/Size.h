@@ -3,7 +3,7 @@
 
 class Size {
 public:
-    Size();
+    Size() = default;
 
     Size(float, float);
 

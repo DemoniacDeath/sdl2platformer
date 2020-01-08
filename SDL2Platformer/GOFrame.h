@@ -7,10 +7,17 @@
 
 class GOFrame : public GameObject {
 public:
-    GOFrame(GameContext *, Rect, int);
+    GOFrame(const GameContext&, Rect, int);
+
+    ~GOFrame() override;
+
+    void addChildren();
 
     int width = 0;
-    GOSolid *floor = NULL, *wallLeft = NULL, *wallRight = NULL, *ceiling = NULL;
+    GOSolid *floor = nullptr;
+    GOSolid *wallLeft = nullptr;
+    GOSolid *wallRight = nullptr;
+    GOSolid *ceiling = nullptr;
 };
 
 #endif // GOFRAME_H

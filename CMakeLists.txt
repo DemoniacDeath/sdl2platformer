@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 project(sdl2platformer)
 
 set(CMAKE_CXX_STANDARD 14)
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 include_directories(SDL2Platformer)
@@ -51,7 +52,8 @@ add_executable(sdl2platformer
         SDL2Platformer/Size.cpp
         SDL2Platformer/Size.h
         SDL2Platformer/Vector2D.cpp
-        SDL2Platformer/Vector2D.h)
+        SDL2Platformer/Vector2D.h
+        SDL2Platformer/Texture.cpp)
 
 target_link_libraries(sdl2platformer ${SDL2_LIBRARY} ${SDL2MAIN_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2TTF_LIBRARY})
 

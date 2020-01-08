@@ -2,6 +2,7 @@
 #define PHYSICSSTATE_H
 
 #include <set>
+#include <memory>
 #include "Vector2D.h"
 #include "Collision.h"
 
@@ -9,13 +10,13 @@ class GameObject;
 
 class PhysicsState {
 public:
-    PhysicsState(GameObject *);
+    explicit PhysicsState(GameObject *);
 
     ~PhysicsState();
 
     void change();
 
-    void detectCollision(PhysicsState *);
+    void detectCollision(PhysicsState&);
 
     void free();
 
@@ -25,7 +26,7 @@ public:
     float gravityForce = 0.f;
     std::set<GameObject *> colliders;
 protected:
-    GameObject *gameObject = NULL;
+    GameObject *gameObject = nullptr;
 };
 
 #endif // PHYSICSSTATE_H

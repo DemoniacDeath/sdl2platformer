@@ -8,7 +8,9 @@
 
 class GOUIText : public GameObject {
 public:
-    GOUIText(GameContext *, Rect);
+    GOUIText(const GameContext&, Rect);
+
+    ~GOUIText() override;
 
     void setFont(const char *, int);
 
@@ -18,11 +20,10 @@ public:
 
     void generate();
 
-protected:
-    TTF_Font *font = NULL;
+private:
+    TTF_Font *font = nullptr;
     std::string text;
-    SDL_Color color;
-
+    SDL_Color color{0, 0, 0, 0};
 };
 
 #endif // GOUITEXT_H

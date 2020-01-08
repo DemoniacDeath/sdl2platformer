@@ -10,19 +10,17 @@ class Animation {
 public:
     explicit Animation(Uint32);
 
-    static Animation *animationWithSingleRenderObject(RenderObject *);
+    static Animation *animationWithSingleRenderObject(const RenderObject&);
 
-    static Animation *animationWithSpeedAndTextureFile(Uint32, SDL_Renderer *, const char *, int, int, Uint16);
+    static Animation *animationWithSpeedAndTextureFile(Uint32, SDL_Renderer *, const std::string&, int, int, Uint16);
 
-    void addFrame(RenderObject *);
+    void addFrame(const RenderObject&);
 
     void turnLeft(bool);
 
-    RenderObject *animate();
+    RenderObject animate();
 
-    void free();
-
-    std::vector<RenderObject *> frames;
+    std::vector<RenderObject> frames;
     Uint32 startTick = 0;
     Uint32 speed = 1;
     bool turnedLeft = false;
