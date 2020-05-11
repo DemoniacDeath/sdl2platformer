@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <vector>
 #include <iostream>
+#include <memory>
 #include "Rect.h"
 #include "RenderObject.h"
 #include "PhysicsState.h"
@@ -14,11 +15,9 @@ class GameContext;
 
 class GameObject {
 public:
-    GameObject(GameContext *);
+    GameObject(const GameContext&, Rect);
 
-    GameObject(GameContext *, Rect);
-
-    virtual ~GameObject();
+    virtual ~GameObject() = default;
 
     virtual void handleEvent(SDL_Event *);
 
@@ -28,7 +27,7 @@ public:
 
     virtual void detectCollisions();
 
-    virtual void detectCollisions(std::vector<GameObject *> *);
+    virtual void detectCollisions(std::vector<GameObject *>&);
 
     virtual void handleEnterCollision(Collision __unused);
 
@@ -42,22 +41,19 @@ public:
 
     virtual void addChild(GameObject *);
 
-    virtual void clean();
-
-    virtual void free();
-
     Vector2D globalPosition();
 
     std::vector<GameObject *> children;
-    RenderObject *renderObject = NULL;
-    Animation *animation = NULL;
-    PhysicsState *physics = NULL;
+    RenderObject renderObject;
+    Animation *animation = nullptr;
+    std::shared_ptr<PhysicsState> physics;
     Rect frame;
     bool visible = true;
     bool removed = false;
+
 protected:
-    GameObject *parent = NULL;
-    GameContext *context = NULL;
+    GameObject *parent = nullptr;
+    const GameContext& context;
 };
 
 #endif // GAMEOBJECT_H

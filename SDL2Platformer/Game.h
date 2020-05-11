@@ -4,18 +4,18 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-#include <stdio.h>
+#include <cstdio>
+#include <memory>
 #include "GameContext.h"
 
 class Game {
 public:
+    Game();
+    ~Game();
+
     void run();
 
 private:
-    bool init();
-
-    void exit();
-
     GameContext *context = nullptr;
 };
 

@@ -1,11 +1,10 @@
+#include <cmath>
 #include "GOPlayer.h"
-
-#include <math.h>
 #include "GOConsumable.h"
 #include "GameContext.h"
 
-GOPlayer::GOPlayer(GameContext *context, Rect frame) : GameObject(context, frame) {
-    physics = new PhysicsState(this);
+GOPlayer::GOPlayer(const GameContext& context, Rect frame) : GameObject(context, frame) {
+    physics = std::make_shared<PhysicsState>(this);
     physics->gravity = true;
     physics->still = false;
     originalSize = frame.size;
@@ -92,7 +91,7 @@ void GOPlayer::handleKeyboard(const Uint8 *state) {
 }
 
 void GOPlayer::handleEnterCollision(Collision collision) {
-    if (GOConsumable *consumable = dynamic_cast<GOConsumable *>(collision.collider)) {
+    if (auto consumable = dynamic_cast<GOConsumable *>(collision.collider)) {
         power += 1;
         powerBar->setValue(power);
         consumable->removed = true;
@@ -105,7 +104,7 @@ void GOPlayer::handleEnterCollision(Collision collision) {
 }
 
 void GOPlayer::handleExitCollision(__attribute__((unused)) GameObject *collider) {
-    if (!physics->colliders.size()) {
+    if (physics->colliders.empty()) {
         jumped = true;
     }
 }
@@ -138,21 +137,17 @@ void GOPlayer::win() {
     winText->visible = true;
 }
 
-void GOPlayer::free() {
-    if (idleAnimation)
-        idleAnimation->free();
-    if (moveAnimation)
-        moveAnimation->free();
-    if (jumpAnimation)
-        jumpAnimation->free();
-    if (crouchAnimation)
-        crouchAnimation->free();
-    if (crouchMoveAnimation)
-        crouchMoveAnimation->free();
+GOPlayer::~GOPlayer() {
+    delete idleAnimation;
+    delete moveAnimation;
+    delete jumpAnimation;
+    delete crouchAnimation;
+    delete crouchMoveAnimation;
 
-    renderObject = NULL;
-    animation = NULL;
-    GameObject::free();
+    delete deathText;
+    delete winText;
+    delete healthBar;
+    delete powerBar;
 }
 
 void GOPlayer::setCrouched(bool value) {

@@ -1,7 +1,6 @@
 #include "GOCamera.h"
 
-
-GOCamera::GOCamera(GameContext *context, Rect frame) : GameObject(context, frame) {
+GOCamera::GOCamera(const GameContext& context, Rect frame) : GameObject(context, frame) {
     originalSize = frame.size;
 }
 

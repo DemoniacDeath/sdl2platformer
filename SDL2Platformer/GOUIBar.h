@@ -6,13 +6,12 @@
 
 class GOUIBar : public GameObject {
 public:
-    GOUIBar(GameContext *, Rect);
+    GOUIBar(const GameContext&, Rect);
 
     void setValue(float);
 
 protected:
     Rect originalFrame;
-
 };
 
 #endif // GOUIBAR_H

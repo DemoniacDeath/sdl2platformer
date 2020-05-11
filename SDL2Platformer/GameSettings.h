@@ -2,12 +2,13 @@
 #define GAMESETTINGS_H
 
 #include <SDL2/SDL.h>
+#include <string>
 
 class GameSettings {
 public:
     GameSettings();
 
-    const char *name = NULL;
+    const std::string name;
     int windowWidth = 0;
     int windowHeight = 0;
 };

@@ -14,25 +14,25 @@ class GameContext;
 
 class GOPlayer : public GameObject {
 public:
-    GOPlayer(GameContext *, Rect);
+    GOPlayer(const GameContext&, Rect);
 
-    void handleEvent(SDL_Event *);
+    ~GOPlayer() override;
 
-    void handleKeyboard(const Uint8 *);
+    void handleEvent(SDL_Event *) override;
 
-    void handleEnterCollision(Collision);
+    void handleKeyboard(const Uint8 *) override;
 
-    void handleExitCollision(GameObject *);
+    void handleEnterCollision(Collision) override;
 
-    void handleCollision(Collision);
+    void handleExitCollision(GameObject *) override;
+
+    void handleCollision(Collision) override;
 
     void dealDamage(int);
 
     void die();
 
     void win();
-
-    void free();
 
     float speed = 0.0f;
     float jumpSpeed = 0.0f;
@@ -44,16 +44,16 @@ public:
     bool dead = false;
     bool won = false;
 
-    Animation *idleAnimation = NULL;
-    Animation *moveAnimation = NULL;
-    Animation *jumpAnimation = NULL;
-    Animation *crouchAnimation = NULL;
-    Animation *crouchMoveAnimation = NULL;
+    Animation *idleAnimation = nullptr;
+    Animation *moveAnimation = nullptr;
+    Animation *jumpAnimation = nullptr;
+    Animation *crouchAnimation = nullptr;
+    Animation *crouchMoveAnimation = nullptr;
 
-    GOUIText *deathText = NULL;
-    GOUIText *winText = NULL;
-    GOUIBar *healthBar = NULL;
-    GOUIBar *powerBar = NULL;
+    GOUIText *deathText = nullptr;
+    GOUIText *winText = nullptr;
+    GOUIBar *healthBar = nullptr;
+    GOUIBar *powerBar = nullptr;
 
 protected:
     void setCrouched(bool);

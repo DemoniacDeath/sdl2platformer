@@ -7,7 +7,7 @@ class GameContext;
 
 class GOConsumable : public GameObject {
 public:
-    GOConsumable(GameContext *, Rect);
+    GOConsumable(const GameContext&, Rect);
 };
 
 #endif // GOCONSUMABLE_H

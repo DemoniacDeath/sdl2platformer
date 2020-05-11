@@ -7,11 +7,11 @@
 
 class GOSolid : public GameObject {
 public:
-    GOSolid(GameContext *, Rect);
+    GOSolid(const GameContext&, Rect);
 
-    void handleEnterCollision(Collision);
+    void handleEnterCollision(Collision) override;
 
-    void handleCollision(Collision);
+    void handleCollision(Collision) override;
 };
 
 #endif //GOSOLID_H

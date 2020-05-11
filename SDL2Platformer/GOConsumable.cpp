@@ -1,5 +1,5 @@
 #include "GOConsumable.h"
 
-GOConsumable::GOConsumable(GameContext *context, Rect frame) : GameObject(context, frame) {
-    physics = new PhysicsState(this);
+GOConsumable::GOConsumable(const GameContext& context, Rect frame) : GameObject(context, frame) {
+    physics = std::make_shared<PhysicsState>(this);
 }

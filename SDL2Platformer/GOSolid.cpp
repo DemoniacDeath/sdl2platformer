@@ -1,8 +1,8 @@
 #include "GOSolid.h"
 #include "GOPlayer.h"
 
-GOSolid::GOSolid(GameContext *context, Rect frame) : GameObject(context, frame) {
-    physics = new PhysicsState(this);
+GOSolid::GOSolid(const GameContext& context, Rect frame) : GameObject(context, frame) {
+    physics = std::make_shared<PhysicsState>(this);
 }
 
 void GOSolid::handleEnterCollision(Collision collision) {

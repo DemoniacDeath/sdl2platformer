@@ -2,23 +2,24 @@
 #define GAMECONTEXT_H
 
 #include <SDL2/SDL.h>
-#include <stdio.h>
+#include <cstdio>
 #include <vector>
+#include <bits/unique_ptr.h>
 #include "GameSettings.h"
 #include "GOWorld.h"
 
 class GameContext {
 public:
-    GameContext(GameSettings *);
+    explicit GameContext(GameSettings *);
 
-    void free();
+    ~GameContext();
 
-    GameSettings *settings = NULL;
-    SDL_Window *window = NULL;
-    SDL_Renderer *renderer = NULL;
-    GOWorld *world = NULL;
-    GameObject *ui = NULL;
-    bool quit = false;
+    GameSettings *settings = nullptr;
+    SDL_Window *window = nullptr;
+    SDL_Renderer *renderer = nullptr;
+    GOWorld *world = nullptr;
+    GameObject *ui = nullptr;
+    mutable bool quit = false;
 };
 
 #endif // GAMECONTEXT_H
