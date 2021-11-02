@@ -1,7 +1,7 @@
 #include "GOFrame.h"
 #include "GameContext.h"
 
-GOFrame::GOFrame(const GameContext& context, Rect frame, int width) : GameObject(context, frame) {
+GOFrame::GOFrame(const GameContext &context, Rect frame, int width) : GameObject(context, frame) {
     this->width = width;
     ceiling = new GOSolid(context, Rect(
             0,
@@ -33,17 +33,15 @@ GOFrame::GOFrame(const GameContext& context, Rect frame, int width) : GameObject
     floor->renderObject = RenderObject::renderObjectFromColor(context.renderer, Color(0x00, 0x00, 0x00, 0xFF));
 }
 
-void GOFrame::addChildren()
-{
+void GOFrame::addChildren() {
     addChild(ceiling);
     addChild(wallLeft);
     addChild(wallRight);
     addChild(floor);
 }
 
-GOFrame::~GOFrame()
-{
-    for (auto frame : children) {
+GOFrame::~GOFrame() {
+    for (auto frame: children) {
         delete frame;
     }
 }

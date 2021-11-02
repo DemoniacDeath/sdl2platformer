@@ -16,7 +16,7 @@ public:
 
     void change();
 
-    void detectCollision(PhysicsState&);
+    void detectCollision(PhysicsState &);
 
     void free();
 

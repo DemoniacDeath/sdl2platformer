@@ -9,7 +9,8 @@ GameContext::GameContext(GameSettings *s) {
 
     settings = s;
 
-    window = SDL_CreateWindow(settings->name.data(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, settings->windowWidth,
+    window = SDL_CreateWindow(settings->name.data(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                              settings->windowWidth,
                               settings->windowHeight, SDL_WINDOW_SHOWN);
     if (window == nullptr) {
         throw std::runtime_error("Window could not be created! SDL Error: " + std::string(SDL_GetError()));

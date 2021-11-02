@@ -1,6 +1,6 @@
 #include "GOUIBar.h"
 
-GOUIBar::GOUIBar(const GameContext& context, Rect frame) : GameObject(context, frame) {
+GOUIBar::GOUIBar(const GameContext &context, Rect frame) : GameObject(context, frame) {
     originalFrame = frame;
 }
 

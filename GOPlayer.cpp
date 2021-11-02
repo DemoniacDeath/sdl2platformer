@@ -3,7 +3,7 @@
 #include "GOConsumable.h"
 #include "GameContext.h"
 
-GOPlayer::GOPlayer(const GameContext& context, Rect frame) : GameObject(context, frame) {
+GOPlayer::GOPlayer(const GameContext &context, Rect frame) : GameObject(context, frame) {
     physics = std::make_shared<PhysicsState>(this);
     physics->gravity = true;
     physics->still = false;

@@ -7,7 +7,7 @@
 
 class GOFrame : public GameObject {
 public:
-    GOFrame(const GameContext&, Rect, int);
+    GOFrame(const GameContext &, Rect, int);
 
     ~GOFrame() override;
 

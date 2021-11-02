@@ -17,7 +17,7 @@ void PhysicsState::change() {
     gameObject->frame.center.y += velocity.y;
 }
 
-void PhysicsState::detectCollision(PhysicsState& c) {
+void PhysicsState::detectCollision(PhysicsState &c) {
     if (still && c.still) {
         return;
     }
@@ -67,7 +67,7 @@ void PhysicsState::detectCollision(PhysicsState& c) {
 }
 
 void PhysicsState::free() {
-    for (const auto& collider : colliders) {
+    for (const auto &collider: colliders) {
         collider->physics->colliders.erase(gameObject);
     }
     colliders.clear();

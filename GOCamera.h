@@ -5,7 +5,7 @@
 
 class GOCamera : public GameObject {
 public:
-    GOCamera(const GameContext&, Rect);
+    GOCamera(const GameContext &, Rect);
 
     void handleKeyboard(const Uint8 *) override;
 

@@ -6,14 +6,15 @@ Animation::Animation(Uint32 speed) {
     this->startTick = SDL_GetTicks();
 }
 
-Animation *Animation::animationWithSingleRenderObject(const RenderObject& renderObject) {
+Animation *Animation::animationWithSingleRenderObject(const RenderObject &renderObject) {
     auto *animation = new Animation(1);
     animation->addFrame(renderObject);
     return animation;
 }
 
 Animation *
-Animation::animationWithSpeedAndTextureFile(Uint32 speed, SDL_Renderer *renderer, const std::string& filePath, int width,
+Animation::animationWithSpeedAndTextureFile(Uint32 speed, SDL_Renderer *renderer, const std::string &filePath,
+                                            int width,
                                             int height, Uint16 frames) {
     auto animation = new Animation(speed);
     SDL_Rect rect{0, 0, width, height};
@@ -28,7 +29,7 @@ Animation::animationWithSpeedAndTextureFile(Uint32 speed, SDL_Renderer *renderer
     return animation;
 }
 
-void Animation::addFrame(const RenderObject& frame) {
+void Animation::addFrame(const RenderObject &frame) {
     this->frames.push_back(frame);
 }
 
@@ -43,7 +44,7 @@ void Animation::turnLeft(bool toTheLeft) {
     } else {
         return;
     }
-    for (auto &frame : this->frames) {
+    for (auto &frame: this->frames) {
         frame.renderFlip = flip;
     }
 }

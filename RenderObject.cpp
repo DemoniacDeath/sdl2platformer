@@ -3,8 +3,7 @@
 #include <utility>
 #include "RenderObject.h"
 
-RenderObject::RenderObject(std::shared_ptr<Texture> t): texture{std::move(t)}
-{}
+RenderObject::RenderObject(std::shared_ptr<Texture> t) : texture{std::move(t)} {}
 
 RenderObject RenderObject::renderObjectFromSurface(SDL_Renderer *renderer, SDL_Surface *surface) {
     SDL_Texture *t = SDL_CreateTextureFromSurface(renderer, surface);
@@ -16,7 +15,7 @@ RenderObject RenderObject::renderObjectFromSurface(SDL_Renderer *renderer, SDL_S
 
 RenderObject RenderObject::renderObjectFromColor(SDL_Renderer *renderer, Color color) {
     SDL_Texture *t = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 1,
-                                             1);
+                                       1);
     SDL_SetRenderTarget(renderer, t);
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
     SDL_RenderClear(renderer);
@@ -24,7 +23,7 @@ RenderObject RenderObject::renderObjectFromColor(SDL_Renderer *renderer, Color c
     return RenderObject(std::make_shared<Texture>(t));
 }
 
-RenderObject RenderObject::renderObjectFromFile(SDL_Renderer *renderer, const std::string& path) {
+RenderObject RenderObject::renderObjectFromFile(SDL_Renderer *renderer, const std::string &path) {
     SDL_Texture *t = nullptr;
     SDL_Surface *surface = IMG_Load(path.data());
     if (surface == nullptr) {
@@ -33,13 +32,14 @@ RenderObject RenderObject::renderObjectFromFile(SDL_Renderer *renderer, const st
     t = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
     if (t == nullptr) {
-        throw std::runtime_error("Unable to create texture from " + path + "! SDL Error: " + std::string(SDL_GetError()));
+        throw std::runtime_error(
+                "Unable to create texture from " + path + "! SDL Error: " + std::string(SDL_GetError()));
     }
     return RenderObject(std::make_shared<Texture>(t));
 }
 
 RenderObject
-RenderObject::renderObjectFromFileWithFrame(SDL_Renderer *renderer, const std::string& path, SDL_Rect frameSize) {
+RenderObject::renderObjectFromFileWithFrame(SDL_Renderer *renderer, const std::string &path, SDL_Rect frameSize) {
     RenderObject renderObject = RenderObject::renderObjectFromFile(renderer, path);
     renderObject.renderFrameSize = frameSize;
     renderObject.fullRender = false;
@@ -47,7 +47,7 @@ RenderObject::renderObjectFromFileWithFrame(SDL_Renderer *renderer, const std::s
 }
 
 void
-RenderObject::render(SDL_Renderer *renderer, const GameSettings& settings, Vector2D position, Size size,
+RenderObject::render(SDL_Renderer *renderer, const GameSettings &settings, Vector2D position, Size size,
                      Vector2D cameraPosition, Size cameraSize) {
     Vector2D renderPosition = position + Vector2D(-size.width / 2, -size.height / 2) - cameraPosition -
                               Vector2D(-cameraSize.width / 2, -cameraSize.height / 2);
@@ -60,6 +60,6 @@ RenderObject::render(SDL_Renderer *renderer, const GameSettings& settings, Vecto
     if (!fullRender) {
         renderFrame = &renderFrameSize;
     }
-    SDL_Texture* t = texture ? texture->getRawPointer() : nullptr;
+    SDL_Texture *t = texture ? texture->getRawPointer() : nullptr;
     SDL_RenderCopyEx(renderer, t, renderFrame, &rect, 0, nullptr, renderFlip);
 }

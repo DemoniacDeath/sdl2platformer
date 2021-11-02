@@ -6,7 +6,7 @@
 
 class GOUIBar : public GameObject {
 public:
-    GOUIBar(const GameContext&, Rect);
+    GOUIBar(const GameContext &, Rect);
 
     void setValue(float);
 

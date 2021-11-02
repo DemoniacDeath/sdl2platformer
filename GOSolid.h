@@ -7,7 +7,7 @@
 
 class GOSolid : public GameObject {
 public:
-    GOSolid(const GameContext&, Rect);
+    GOSolid(const GameContext &, Rect);
 
     void handleEnterCollision(Collision) override;
 

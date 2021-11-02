@@ -1,18 +1,18 @@
 #include "GameContext.h"
 #include "GameObject.h"
 
-GameObject::GameObject(const GameContext& ctx, const Rect frame): context{ctx} {
+GameObject::GameObject(const GameContext &ctx, const Rect frame) : context{ctx} {
     this->frame = frame;
 }
 
 void GameObject::handleEvent(SDL_Event *e) {
-    for (auto& child : children) {
+    for (auto &child: children) {
         child->handleEvent(e);
     }
 }
 
 void GameObject::handleKeyboard(const Uint8 *state) {
-    for (auto& child : children) {
+    for (auto &child: children) {
         child->handleKeyboard(state);
     }
 }
@@ -37,11 +37,11 @@ void GameObject::detectCollisions() {
     }
 }
 
-void GameObject::detectCollisions(std::vector<GameObject *>& allColliders) {
+void GameObject::detectCollisions(std::vector<GameObject *> &allColliders) {
     if (physics) {
         allColliders.push_back(this);
     }
-    for (const auto& child : children) {
+    for (const auto &child: children) {
         child->detectCollisions(allColliders);
     }
 }
@@ -56,7 +56,7 @@ void GameObject::animate() {
     if (animation) {
         this->renderObject = animation->animate();
     }
-    for (auto& child : children) {
+    for (auto &child: children) {
         child->animate();
     }
 }
@@ -66,9 +66,9 @@ void GameObject::render(Vector2D localBasis, Vector2D cameraPosition, Size camer
         Vector2D globalPosition = frame.center;
         globalPosition += localBasis;
         renderObject.render(context.renderer, *(context.settings), globalPosition, frame.size, cameraPosition,
-                             cameraSize);
+                            cameraSize);
     }
-    for (const auto& child : children) {
+    for (const auto &child: children) {
         child->render(localBasis + frame.center, cameraPosition, cameraSize);
     }
 }

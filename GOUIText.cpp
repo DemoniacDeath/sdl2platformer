@@ -1,8 +1,7 @@
 #include "GameContext.h"
 #include "GOUIText.h"
 
-GOUIText::GOUIText(const GameContext& context, Rect frame) : GameObject(context, frame)
-{}
+GOUIText::GOUIText(const GameContext &context, Rect frame) : GameObject(context, frame) {}
 
 void GOUIText::setFont(const char *path, int size) {
     font = TTF_OpenFont(path, size);
@@ -24,7 +23,6 @@ void GOUIText::generate() {
     }
 }
 
-GOUIText::~GOUIText()
-{
+GOUIText::~GOUIText() {
     TTF_CloseFont(font);
 }

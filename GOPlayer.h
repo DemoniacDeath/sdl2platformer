@@ -14,7 +14,7 @@ class GameContext;
 
 class GOPlayer : public GameObject {
 public:
-    GOPlayer(const GameContext&, Rect);
+    GOPlayer(const GameContext &, Rect);
 
     ~GOPlayer() override;
 

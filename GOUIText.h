@@ -8,7 +8,7 @@
 
 class GOUIText : public GameObject {
 public:
-    GOUIText(const GameContext&, Rect);
+    GOUIText(const GameContext &, Rect);
 
     ~GOUIText() override;
 

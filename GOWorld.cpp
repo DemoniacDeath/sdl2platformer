@@ -2,7 +2,7 @@
 #include "GOWorld.h"
 #include "GameContext.h"
 
-GOWorld::GOWorld(const GameContext& context, Rect frame) : GameObject(context, frame) {
+GOWorld::GOWorld(const GameContext &context, Rect frame) : GameObject(context, frame) {
     camera = std::make_unique<GOCamera>(context, frame);
 }
 
@@ -23,7 +23,7 @@ void GOWorld::renderWorld() {
 
 void GOWorld::clean() {
     auto childrenEndRemove = children.end();
-    auto childrenBeginRemove = std::remove_if(children.begin(), children.end(), [](const GameObject* child) {
+    auto childrenBeginRemove = std::remove_if(children.begin(), children.end(), [](const GameObject *child) {
         return child->removed;
     });
     children.erase(childrenBeginRemove, childrenEndRemove);
@@ -40,7 +40,7 @@ void GOWorld::clean() {
 }
 
 GOWorld::~GOWorld() {
-    for (auto block : blocks) {
+    for (auto block: blocks) {
         delete block;
     }
 }

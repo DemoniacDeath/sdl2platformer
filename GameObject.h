@@ -15,7 +15,7 @@ class GameContext;
 
 class GameObject {
 public:
-    GameObject(const GameContext&, Rect);
+    GameObject(const GameContext &, Rect);
 
     virtual ~GameObject() = default;
 
@@ -27,7 +27,7 @@ public:
 
     virtual void detectCollisions();
 
-    virtual void detectCollisions(std::vector<GameObject *>&);
+    virtual void detectCollisions(std::vector<GameObject *> &);
 
     virtual void handleEnterCollision(Collision __unused);
 
@@ -53,7 +53,7 @@ public:
 
 protected:
     GameObject *parent = nullptr;
-    const GameContext& context;
+    const GameContext &context;
 };
 
 #endif // GAMEOBJECT_H

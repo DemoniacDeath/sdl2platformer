@@ -1,7 +1,7 @@
 #include "GOSolid.h"
 #include "GOPlayer.h"
 
-GOSolid::GOSolid(const GameContext& context, Rect frame) : GameObject(context, frame) {
+GOSolid::GOSolid(const GameContext &context, Rect frame) : GameObject(context, frame) {
     physics = std::make_shared<PhysicsState>(this);
 }
 

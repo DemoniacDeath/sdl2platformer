@@ -5,14 +5,14 @@
 
 class Texture {
 public:
-    explicit Texture(SDL_Texture*);
+    explicit Texture(SDL_Texture *);
 
     ~Texture();
 
-    SDL_Texture* getRawPointer();
+    SDL_Texture *getRawPointer();
 
 private:
-    SDL_Texture* texture = nullptr;
+    SDL_Texture *texture = nullptr;
 };
 
 #endif //SDL2PLATFORMER_TEXTURE_H

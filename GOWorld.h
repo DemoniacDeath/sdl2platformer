@@ -8,7 +8,7 @@
 
 class GOWorld : public GameObject {
 public:
-    GOWorld(const GameContext&, Rect);
+    GOWorld(const GameContext &, Rect);
 
     ~GOWorld() override;
 
@@ -23,7 +23,7 @@ public:
     std::unique_ptr<GameObject> healthBar;
     std::unique_ptr<GameObject> powerBar;
 
-    std::vector<GameObject*> blocks;
+    std::vector<GameObject *> blocks;
 };
 
 #endif // GOWORLD_H
